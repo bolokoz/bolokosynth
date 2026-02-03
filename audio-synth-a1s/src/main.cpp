@@ -1,5 +1,19 @@
 #include <Arduino.h>
 #include "AudioKit.h"
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+// Global State
+int current_volume = 80;
+int current_waveform = 0; // 0: Triangle, 1: Square, 2: Saw
+int last_note = -1;
 
 // Define UART pins for MIDI communication
 // Adjust these pins according to your specific wiring and AudioKit board version
@@ -35,12 +49,85 @@ void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
             frequency = freq;
             updatePhaseInc();
             note_on = true;
+            last_note = d1;
         } else {
             // Note On with velocity 0 is Note Off
             note_on = false;
         }
     } else if (cmd == 0x80) { // Note Off
         note_on = false;
+    } else if (cmd == 0xB0) { // Control Change
+        if (d1 == 7) { // Volume
+             current_volume = map(d2, 0, 127, 0, 100);
+             kit.setVolume(current_volume);
+        } else if (d1 == 70) { // Waveform
+             // Map 0-127 to 0-2
+             if (d2 < 42) current_waveform = 0;
+             else if (d2 < 84) current_waveform = 1;
+             else current_waveform = 2;
+        }
+    }
+}
+
+void displayTask(void *parameter) {
+    // Try to initialize OLED
+    // Note: AudioKit likely initializes Wire. If this fails, we might need to check pins.
+    // We pass false as the last argument to prevent re-initializing Wire, which would break the Codec I2C.
+    if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C, true, false)) {
+        Serial.println(F("SSD1306 allocation failed"));
+        // Just loop forever or delete task
+        vTaskDelete(NULL);
+    }
+
+    display.clearDisplay();
+    display.display();
+
+    for(;;) {
+        display.clearDisplay();
+
+        // Title
+        display.setTextSize(1);
+        display.setTextColor(SSD1306_WHITE);
+        display.setCursor(0, 0);
+        display.println(F("ESP32 Synth"));
+
+        // Volume
+        display.setCursor(0, 12);
+        display.print(F("Vol: "));
+        display.print(current_volume);
+
+        // Waveform
+        display.setCursor(0, 24);
+        display.print(F("Wave: "));
+        switch(current_waveform) {
+            case 0: display.print(F("Triangle")); break;
+            case 1: display.print(F("Square")); break;
+            case 2: display.print(F("Saw")); break;
+            default: display.print(F("Unknown")); break;
+        }
+
+        // Note Info
+        display.setCursor(0, 36);
+        display.print(F("Note: "));
+        if (last_note != -1) {
+            display.print(last_note);
+        } else {
+            display.print(F("--"));
+        }
+
+        if (note_on) {
+            display.setCursor(70, 36);
+            display.print(F("*ON*"));
+        }
+
+        // Instructions
+        display.setCursor(0, 52);
+        display.print(F("CC7:Vol CC70:Wave"));
+
+        display.display();
+
+        // Update at ~10 FPS
+        vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
 
@@ -59,7 +146,18 @@ void setup() {
     kit.setBoard(AudioKitBoard::AI_THINKER_V2_2);
 
     kit.begin(cfg);
-    kit.setVolume(80);
+    kit.setVolume(current_volume);
+
+    // Create Display Task on Core 0
+    xTaskCreatePinnedToCore(
+        displayTask,
+        "Display Task",
+        4096, // Stack size
+        NULL,
+        1,    // Priority
+        NULL,
+        0     // Core 0
+    );
 
     updatePhaseInc();
     Serial.println("Audio Synth Ready. Waiting for MIDI...");
@@ -95,12 +193,19 @@ void loop() {
         int16_t sample = 0;
 
         if (note_on) {
-            // Triangle wave generation
             float sample_f = 0.0f;
-            if (phase < 1.0f) {
-                sample_f = -1.0f + 2.0f * phase;
-            } else {
-                sample_f = 1.0f - 2.0f * (phase - 1.0f);
+
+            if (current_waveform == 0) { // Triangle
+                if (phase < 1.0f) {
+                    sample_f = -1.0f + 2.0f * phase;
+                } else {
+                    sample_f = 1.0f - 2.0f * (phase - 1.0f);
+                }
+            } else if (current_waveform == 1) { // Square
+                if (phase < 1.0f) sample_f = -1.0f;
+                else sample_f = 1.0f;
+            } else if (current_waveform == 2) { // Sawtooth
+                sample_f = -1.0f + phase; // 0..2 -> -1..1
             }
 
             // Advance phase
