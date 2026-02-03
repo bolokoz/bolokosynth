@@ -70,14 +70,6 @@ void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
 }
 
 void displayTask(void *parameter) {
-    // Check if OLED is connected
-    Wire.beginTransmission(0x3C);
-    if (Wire.endTransmission() != 0) {
-        Serial.println(F("OLED not detected at 0x3C"));
-        vTaskDelete(NULL);
-        return;
-    }
-
     // Try to initialize OLED
     // Note: AudioKit likely initializes Wire. If this fails, we might need to check pins.
     // We pass false as the last argument to prevent re-initializing Wire, which would break the Codec I2C.
