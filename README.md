@@ -50,7 +50,7 @@ cd audio-synth-a1s
 pio run -t upload
 ```
 
-```bash
-cd usb-host-s2-ttgo
-pio run -t upload
-```
+## Schema
+
+![System & Data Schema](schema.svg)
+

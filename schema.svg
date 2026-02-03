@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">System &amp; Data Schema</text>
+
+  <!-- WiFi/Config Block -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="200" height="150" rx="10" ry="10" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+    <text x="100" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#1565c0">Configuration API</text>
+    <line x1="0" y1="35" x2="200" y2="35" stroke="#2196f3" stroke-width="1"/>
+    
+    <text x="20" y="60" font-family="monospace" font-size="14" fill="#333">POST /api/config</text>
+    <text x="20" y="85" font-family="Arial, sans-serif" font-size="12" fill="#555">JSON Payload:</text>
+    <text x="30" y="105" font-family="monospace" font-size="12" fill="#333">{</text>
+    <text x="40" y="120" font-family="monospace" font-size="12" fill="#333">"volume": 0..100,</text>
+    <text x="40" y="135" font-family="monospace" font-size="12" fill="#333">"waveform": 0..3</text>
+    <text x="30" y="150" font-family="monospace" font-size="12" fill="#333">}</text>
+  </g>
+
+  <!-- Arrow -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666" />
+    </marker>
+  </defs>
+  <line x1="250" y1="155" x2="340" y2="155" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Synth State Block -->
+  <g transform="translate(350, 80)">
+    <rect x="0" y="0" width="200" height="150" rx="10" ry="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+    <text x="100" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2e7d32">Synth State</text>
+    <line x1="0" y1="35" x2="200" y2="35" stroke="#4caf50" stroke-width="1"/>
+    
+    <text x="20" y="60" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">Variables</text>
+    <text x="20" y="90" font-family="monospace" font-size="14" fill="#333">int volume</text>
+    <text x="20" y="115" font-family="monospace" font-size="14" fill="#333">enum waveform</text>
+    
+    <text x="20" y="140" font-family="Arial, sans-serif" font-size="10" fill="#666" font-style="italic">(Stored in RAM)</text>
+  </g>
+  
+  <!-- Note text -->
+  <text x="300" y="260" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#777">Update triggers via WiFi (JSON) or MIDI (CC messages)</text>
+
+</svg>
