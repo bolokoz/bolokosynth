@@ -1,10 +1,10 @@
 # ESP32 Digital Synth MVP
 
-This project implements a minimal digital synthesizer using an ESP32 AudioKit v2.2 and an ESP32-S3 as a USB Host for a MIDI keyboard.
+This project implements a minimal digital synthesizer using an ESP32 AudioKit v2.2 and an ESP32-S3 (or ESP32-S2) as a USB Host for a MIDI keyboard.
 
 ## Architecture
 
-**MIDI Keyboard (Arturia MiniLab Mk2)** --[USB]--> **ESP32-S3 (USB Host)** --[UART]--> **ESP32-A1S (AudioKit)** --[I2S]--> **Audio Output**
+**MIDI Keyboard (Arturia MiniLab Mk2)** --[USB]--> **ESP32-S3/S2 (USB Host)** --[UART]--> **ESP32-A1S (AudioKit)** --[I2S]--> **Audio Output**
 
 ## Components
 
@@ -28,6 +28,14 @@ This project implements a minimal digital synthesizer using an ESP32 AudioKit v2
 
 > **Note**: On ESP32 AudioKit v2.2, some GPIOs are shared with onboard keys or SD card. Ensure GPIO 22/23 (if used) do not conflict with your board revision. Check your schematic.
 
+### 3. USB Host (ESP32-S2 TTGO)
+- **Folder**: `usb-host-s2-ttgo/`
+- **Function**: Alternative USB Host implementation using ESP32-S2 with integrated ST7789 display.
+- **Hardware**: LilyGo TTGO ESP32-S2.
+- **Connections**:
+  - USB-C Port (Native USB) -> MIDI Keyboard (via OTG adapter).
+  - UART connections to AudioKit (Check `usb-host-s2-ttgo/src/main.cpp` for pins).
+
 ## Building
 
 Use PlatformIO to build and upload the firmware.
@@ -39,5 +47,10 @@ pio run -t upload
 
 ```bash
 cd audio-synth-a1s
+pio run -t upload
+```
+
+```bash
+cd usb-host-s2-ttgo
 pio run -t upload
 ```
