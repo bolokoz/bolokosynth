@@ -13,34 +13,41 @@ enum Waveform {
 
 class Synth {
 public:
+    // Initializes the synthesizer with a specific sample rate and default settings.
     Synth(int sampleRate = 44100) : sample_rate(sampleRate), frequency(440.0f), volume(80), waveform(WAVE_TRIANGLE), note_on(false), phase(0.0f) {
         updatePhaseInc();
     }
 
+    // Sets the base oscillator frequency.
     void setFrequency(float freq) {
         frequency = freq;
         updatePhaseInc();
     }
 
+    // Sets the software-scaled output volume (0-100).
     void setVolume(int vol) {
         volume = constrain(vol, 0, 100);
     }
 
+    // Changes the active oscillator waveform.
     void setWaveform(int wave) {
         if (wave >= 0 && wave <= 3) {
             waveform = (Waveform)wave;
         }
     }
 
+    // Triggers a note-on event with a specific frequency.
     void noteOn(float freq) {
         setFrequency(freq);
         note_on = true;
     }
 
+    // Triggers a note-off event.
     void noteOff() {
         note_on = false;
     }
 
+    // Generates the next 16-bit audio sample based on current oscillator state.
     int16_t getSample() {
         if (!note_on) {
             return 0;
@@ -89,6 +96,7 @@ private:
     float phase;
     float phase_inc;
 
+    // Recalculates the phase increment step based on frequency and sample rate.
     void updatePhaseInc() {
         phase_inc = (frequency * 2.0f) / (float)sample_rate;
     }

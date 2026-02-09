@@ -32,6 +32,7 @@ int midi_state = 0; // 0: status, 1: data1, 2: data2
 uint8_t status_byte = 0;
 uint8_t data1_byte = 0;
 
+// Processes individual MIDI messages and updates the synthesizer state or configuration.
 void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
     uint8_t cmd = status & 0xF0;
     uint8_t ch = status & 0x0F;
@@ -73,6 +74,7 @@ void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
     }
 }
 
+// FreeRTOS task responsible for updating the OLED display at a fixed rate.
 void displayTask(void *parameter) {
     // Try to initialize OLED
     // We pass false as the last argument to prevent re-initializing Wire, which would break the Codec I2C.
@@ -138,6 +140,7 @@ void displayTask(void *parameter) {
     }
 }
 
+// Initial configuration for peripherals, hardware, and system services.
 void setup() {
     Serial.begin(115200);
 
@@ -168,6 +171,7 @@ void setup() {
     Serial.println("Audio Synth Ready. Waiting for MIDI...");
 }
 
+// Main execution loop: handles web requests, processes MIDI input, and generates audio samples.
 void loop() {
     // 0. Handle Web Server
     webManager.handle();

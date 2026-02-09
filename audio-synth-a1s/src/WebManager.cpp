@@ -103,6 +103,7 @@ const char* WebManager::index_html = R"rawliteral(
 
 WebManager::WebManager(Synth* synthInstance) : synth(synthInstance), server(80) {}
 
+// Initializes WiFi connection via WiFiManager and sets up web server routes.
 void WebManager::begin() {
     // Load Preferences
     Preferences preferences;
@@ -131,14 +132,17 @@ void WebManager::begin() {
     server.begin();
 }
 
+// Periodically called to handle incoming HTTP client requests.
 void WebManager::handle() {
     server.handleClient();
 }
 
+// Serves the main HTML configuration page.
 void WebManager::handleRoot() {
     server.send(200, "text/html", index_html);
 }
 
+// Returns the current synthesizer and MIDI configuration as a JSON object.
 void WebManager::handleConfigGet() {
     StaticJsonDocument<300> doc;
     doc["volume"] = synth->getVolume();
@@ -151,6 +155,7 @@ void WebManager::handleConfigGet() {
     server.send(200, "application/json", output);
 }
 
+// Updates the synthesizer and MIDI configuration from a JSON POST request.
 void WebManager::handleConfigPost() {
     if (server.hasArg("plain") == false) {
         server.send(400, "text/plain", "Body not received");
