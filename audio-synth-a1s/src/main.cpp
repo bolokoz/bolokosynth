@@ -1,12 +1,19 @@
 #include <Arduino.h>
-#include "AudioKit.h"
+#include "AudioKitHAL.h"
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <WiFiManager.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
+#include <Preferences.h>
 #include "Synth.h"
+
+// --- Preferences & Config ---
+Preferences preferences;
+int midi_channel = -1; // -1 = OMNI, 0-15 = Channel 1-16
+int cc_vol = 7;
+int cc_wave = 70;
 
 // --- OLED Settings ---
 #define SCREEN_WIDTH 128
@@ -36,6 +43,12 @@ uint8_t data1_byte = 0;
 
 void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
     uint8_t cmd = status & 0xF0;
+    uint8_t ch = status & 0x0F;
+
+    // Filter by channel if configured
+    if (midi_channel != -1 && ch != midi_channel) {
+        return;
+    }
 
     if (cmd == 0x90) { // Note On
         if (d2 > 0) {
@@ -52,11 +65,11 @@ void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
         synth.noteOff();
         is_note_on = false;
     } else if (cmd == 0xB0) { // Control Change
-        if (d1 == 7) { // Volume
+        if (d1 == cc_vol) { // Volume
              // Map 0-127 to 0-100
              int vol = map(d2, 0, 127, 0, 100);
              synth.setVolume(vol);
-        } else if (d1 == 70) { // Waveform
+        } else if (d1 == cc_wave) { // Waveform
              // Map 0-127 to 0-3 (Triangle, Sine, Square, Saw)
              int wave = 0;
              if (d2 < 32) wave = 0;
@@ -160,20 +173,54 @@ const char* index_html = R"rawliteral(
             <option value="3">Sawtooth</option>
         </select>
     </div>
+    <hr>
+    <h3>MIDI Configuration</h3>
+    <div>
+        <label for="midi_channel">MIDI Channel:</label>
+        <select id="midi_channel">
+            <option value="-1">Omni</option>
+            <option value="0">1</option><option value="1">2</option><option value="2">3</option><option value="3">4</option>
+            <option value="4">5</option><option value="5">6</option><option value="6">7</option><option value="7">8</option>
+            <option value="8">9</option><option value="9">10</option><option value="10">11</option><option value="11">12</option>
+            <option value="12">13</option><option value="13">14</option><option value="14">15</option><option value="15">16</option>
+        </select>
+    </div>
+    <div>
+        <label for="cc_vol">Volume CC:</label>
+        <input type="number" id="cc_vol" min="0" max="127" style="width: 50px;">
+    </div>
+    <div>
+        <label for="cc_wave">Waveform CC:</label>
+        <input type="number" id="cc_wave" min="0" max="127" style="width: 50px;">
+    </div>
+
     <script>
         function updateState() {
             var vol = document.getElementById("volume").value;
             var wave = document.getElementById("waveform").value;
+            var ch = document.getElementById("midi_channel").value;
+            var cc_vol = document.getElementById("cc_vol").value;
+            var cc_wave = document.getElementById("cc_wave").value;
+
             document.getElementById("volVal").innerText = vol;
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/api/config", true);
             xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify({ volume: parseInt(vol), waveform: parseInt(wave) }));
+            xhr.send(JSON.stringify({
+                volume: parseInt(vol),
+                waveform: parseInt(wave),
+                midi_channel: parseInt(ch),
+                cc_vol: parseInt(cc_vol),
+                cc_wave: parseInt(cc_wave)
+            }));
         }
 
         document.getElementById("volume").onchange = updateState;
         document.getElementById("waveform").onchange = updateState;
+        document.getElementById("midi_channel").onchange = updateState;
+        document.getElementById("cc_vol").onchange = updateState;
+        document.getElementById("cc_wave").onchange = updateState;
 
         // Load initial state
         var xhr = new XMLHttpRequest();
@@ -183,6 +230,10 @@ const char* index_html = R"rawliteral(
                 document.getElementById("volume").value = data.volume;
                 document.getElementById("volVal").innerText = data.volume;
                 document.getElementById("waveform").value = data.waveform;
+
+                if(data.midi_channel !== undefined) document.getElementById("midi_channel").value = data.midi_channel;
+                if(data.cc_vol !== undefined) document.getElementById("cc_vol").value = data.cc_vol;
+                if(data.cc_wave !== undefined) document.getElementById("cc_wave").value = data.cc_wave;
             }
         };
         xhr.open("GET", "/api/config", true);
@@ -190,16 +241,19 @@ const char* index_html = R"rawliteral(
     </script>
 </body>
 </html>
-)rawliteral;
+)rawliteral";
 
 void handleRoot() {
     server.send(200, "text/html", index_html);
 }
 
 void handleConfigGet() {
-    StaticJsonDocument<200> doc;
+    StaticJsonDocument<300> doc;
     doc["volume"] = synth.getVolume();
     doc["waveform"] = synth.getWaveform();
+    doc["midi_channel"] = midi_channel;
+    doc["cc_vol"] = cc_vol;
+    doc["cc_wave"] = cc_wave;
     String output;
     serializeJson(doc, output);
     server.send(200, "application/json", output);
@@ -210,7 +264,7 @@ void handleConfigPost() {
         server.send(400, "text/plain", "Body not received");
         return;
     }
-    StaticJsonDocument<200> doc;
+    StaticJsonDocument<300> doc;
     DeserializationError error = deserializeJson(doc, server.arg("plain"));
     if (error) {
         server.send(400, "text/plain", "Invalid JSON");
@@ -226,21 +280,37 @@ void handleConfigPost() {
         synth.setWaveform(wave);
     }
 
+    if (doc.containsKey("midi_channel")) {
+        midi_channel = doc["midi_channel"];
+        preferences.putInt("midi_channel", midi_channel);
+    }
+    if (doc.containsKey("cc_vol")) {
+        cc_vol = doc["cc_vol"];
+        preferences.putInt("cc_vol", cc_vol);
+    }
+    if (doc.containsKey("cc_wave")) {
+        cc_wave = doc["cc_wave"];
+        preferences.putInt("cc_wave", cc_wave);
+    }
+
     server.send(200, "application/json", "{\"status\":\"ok\"}");
 }
 
 void setup() {
     Serial.begin(115200);
+
+    // Load Preferences
+    preferences.begin("synth-config", false);
+    midi_channel = preferences.getInt("midi_channel", -1);
+    cc_vol = preferences.getInt("cc_vol", 7);
+    cc_wave = preferences.getInt("cc_wave", 70);
+
     Serial2.begin(31250, SERIAL_8N1, MIDI_RX_PIN, MIDI_TX_PIN);
 
     // AudioKit setup
-    auto cfg = kit.defaultConfig();
-    cfg.sample_rate = 44100;
-    cfg.channels = 2; // Stereo output
-    cfg.bits_per_sample = 16;
-
-    // Attempt to auto-detect or use default board
-    kit.setBoard(AudioKitBoard::AI_THINKER_V2_2);
+    auto cfg = kit.defaultConfig(KitOutput);
+    cfg.sample_rate = AUDIO_HAL_44K_SAMPLES;
+    cfg.bits_per_sample = AUDIO_HAL_BIT_LENGTH_16BITS;
 
     kit.begin(cfg);
     kit.setVolume(80); // Hardware volume fixed at 80, we do software scaling in Synth
