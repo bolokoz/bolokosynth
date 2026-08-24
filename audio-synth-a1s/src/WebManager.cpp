@@ -51,6 +51,18 @@ const char* WebManager::index_html = R"rawliteral(
         <label for="cc_wave">Waveform CC:</label>
         <input type="number" id="cc_wave" min="0" max="127" style="width: 50px;">
     </div>
+    <div>
+        <label for="cc_pitch">Pitch Detect CC:</label>
+        <input type="number" id="cc_pitch" min="0" max="127" style="width: 50px;">
+    </div>
+    <div>
+        <label for="cc_ratio">Ratio Knob CC:</label>
+        <input type="number" id="cc_ratio" min="0" max="127" style="width: 50px;">
+    </div>
+    <div class="slidecontainer">
+        <label for="signal_ratio">Signal Ratio: <span id="ratioVal"></span></label>
+        <input type="range" min="1.0" max="10.0" step="0.1" value="3.0" class="slider" id="signal_ratio">
+    </div>
 
     <script>
         function updateState() {
@@ -59,8 +71,12 @@ const char* WebManager::index_html = R"rawliteral(
             var ch = document.getElementById("midi_channel").value;
             var cc_vol = document.getElementById("cc_vol").value;
             var cc_wave = document.getElementById("cc_wave").value;
+            var cc_pitch = document.getElementById("cc_pitch").value;
+            var cc_ratio = document.getElementById("cc_ratio").value;
+            var signal_ratio = document.getElementById("signal_ratio").value;
 
             document.getElementById("volVal").innerText = vol;
+            document.getElementById("ratioVal").innerText = signal_ratio;
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/api/config", true);
@@ -70,7 +86,10 @@ const char* WebManager::index_html = R"rawliteral(
                 waveform: parseInt(wave),
                 midi_channel: parseInt(ch),
                 cc_vol: parseInt(cc_vol),
-                cc_wave: parseInt(cc_wave)
+                cc_wave: parseInt(cc_wave),
+                cc_pitch: parseInt(cc_pitch),
+                cc_ratio: parseInt(cc_ratio),
+                signal_ratio: parseFloat(signal_ratio)
             }));
         }
 
@@ -79,6 +98,9 @@ const char* WebManager::index_html = R"rawliteral(
         document.getElementById("midi_channel").onchange = updateState;
         document.getElementById("cc_vol").onchange = updateState;
         document.getElementById("cc_wave").onchange = updateState;
+        document.getElementById("cc_pitch").onchange = updateState;
+        document.getElementById("cc_ratio").onchange = updateState;
+        document.getElementById("signal_ratio").onchange = updateState;
 
         // Load initial state
         var xhr = new XMLHttpRequest();
@@ -92,6 +114,12 @@ const char* WebManager::index_html = R"rawliteral(
                 if(data.midi_channel !== undefined) document.getElementById("midi_channel").value = data.midi_channel;
                 if(data.cc_vol !== undefined) document.getElementById("cc_vol").value = data.cc_vol;
                 if(data.cc_wave !== undefined) document.getElementById("cc_wave").value = data.cc_wave;
+                if(data.cc_pitch !== undefined) document.getElementById("cc_pitch").value = data.cc_pitch;
+                if(data.cc_ratio !== undefined) document.getElementById("cc_ratio").value = data.cc_ratio;
+                if(data.signal_ratio !== undefined) {
+                    document.getElementById("signal_ratio").value = data.signal_ratio;
+                    document.getElementById("ratioVal").innerText = data.signal_ratio;
+                }
             }
         };
         xhr.open("GET", "/api/config", true);
@@ -111,6 +139,9 @@ void WebManager::begin() {
     midiChannel = preferences.getInt("midi_channel", -1);
     ccVol = preferences.getInt("cc_vol", 7);
     ccWave = preferences.getInt("cc_wave", 70);
+    ccPitch = preferences.getInt("cc_pitch", 80);
+    ccRatio = preferences.getInt("cc_ratio", 81);
+    signalRatio = preferences.getFloat("signal_ratio", 3.0f);
     preferences.end();
 
     // WiFi Setup
@@ -150,6 +181,9 @@ void WebManager::handleConfigGet() {
     doc["midi_channel"] = midiChannel;
     doc["cc_vol"] = ccVol;
     doc["cc_wave"] = ccWave;
+    doc["cc_pitch"] = ccPitch;
+    doc["cc_ratio"] = ccRatio;
+    doc["signal_ratio"] = signalRatio;
     String output;
     serializeJson(doc, output);
     server.send(200, "application/json", output);
@@ -190,6 +224,18 @@ void WebManager::handleConfigPost() {
     if (doc.containsKey("cc_wave")) {
         ccWave = doc["cc_wave"];
         preferences.putInt("cc_wave", ccWave);
+    }
+    if (doc.containsKey("cc_pitch")) {
+        ccPitch = doc["cc_pitch"];
+        preferences.putInt("cc_pitch", ccPitch);
+    }
+    if (doc.containsKey("cc_ratio")) {
+        ccRatio = doc["cc_ratio"];
+        preferences.putInt("cc_ratio", ccRatio);
+    }
+    if (doc.containsKey("signal_ratio")) {
+        signalRatio = doc["signal_ratio"];
+        preferences.putFloat("signal_ratio", signalRatio);
     }
 
     preferences.end();

@@ -14,17 +14,23 @@ public:
     void handle();
 
     // Configuration accessors
-    int getMidiChannel() { return midiChannel; }
-    int getCcVol() { return ccVol; }
-    int getCcWave() { return ccWave; }
+    int   getMidiChannel() { return midiChannel; }
+    int   getCcVol()       { return ccVol; }
+    int   getCcWave()      { return ccWave; }
+    int   getCcPitch()     { return ccPitch; }
+    int   getCcRatio()     { return ccRatio; }
+    float getSignalRatio() { return signalRatio; }
 
 private:
     Synth* synth;
     WebServer server;
-    
-    int midiChannel = -1;
-    int ccVol = 7;
-    int ccWave = 70;
+
+    int   midiChannel = -1;
+    int   ccVol       = 7;
+    int   ccWave      = 70;
+    int   ccPitch     = 80;
+    int   ccRatio     = 81;
+    float signalRatio = 3.0f;
 
     // Handlers
     void handleRoot();
