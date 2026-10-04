@@ -50,12 +50,18 @@ volatile float live_ratio   = 3.0f;
 volatile bool  capturing    = false;
 
 // --- MIDI Parser State ---
+// This legacy UART decoder expects a fresh status plus two data bytes.
+// It is not a complete running-status/realtime/SysEx MIDI parser; do not
+// confuse it with P4's USB packet/CIN validation.
 int midi_state = 0; // 0: status, 1: data1, 2: data2
 uint8_t status_byte = 0;
 uint8_t data1_byte = 0;
 
 // Processes individual MIDI messages and updates the synthesizer state or configuration.
 // Polyphonic: each Note On allocates a voice, each Note Off releases the matching voice.
+// Route only the configured channel, or all channels for Omni(-1).
+// Legacy Synth keys are note-based, so equal notes across Omni channels do
+// not have P4's independent channel identity. This is preserved behavior.
 void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
     uint8_t cmd = status & 0xF0;
     uint8_t ch = status & 0x0F;
@@ -96,6 +102,8 @@ void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
              if (d2 > 0) {
                  capturing   = true;
                  live_ratio  = webManager.getSignalRatio();
+                 // Capture takes over the codec and persists a pitch-class result.
+                 // Reboot is deliberate because live RX-to-TX recovery was unreliable.
                  PitchDetector::detectPersistAndReboot(
                      out, synth.getInfo(),
                      webManager.getCcRatio(),
@@ -115,6 +123,9 @@ void handleMidiMessage(uint8_t status, uint8_t d1, uint8_t d2) {
 }
 
 // FreeRTOS task responsible for updating the OLED display at a fixed rate.
+// OLED runs on core0 while the main loop copies audio. Reads of shared
+// UI state are lightweight but not coherent multi-field snapshots like P4.
+// The codec owns Wire initialization; reinitializing it here breaks codec I2C.
 void displayTask(void *parameter) {
     // Try to initialize OLED
     // We pass false as the last argument to prevent re-initializing Wire, which would break the Codec I2C.
@@ -220,6 +231,8 @@ void displayTask(void *parameter) {
 void setup() {
     Serial.begin(115200);
 
+    // Standard UART MIDI baud; the host companion must provide compatible
+    // serial messages on these pins. This target has no USB-host synth path.
     Serial2.begin(31250, SERIAL_8N1, MIDI_RX_PIN, MIDI_TX_PIN);
 
     // Initialize synth engine (generators + ADSR + effect chain).
@@ -234,6 +247,8 @@ void setup() {
     out.setVolume(synth.getVolume() / 100.0f);
 
     // Web/WiFi Setup
+    // Provisioning may block until connection or timeout. Doing it at boot
+    // keeps normal loop audio copying separate from that initial WiFi wait.
     webManager.begin();
 
     // Sync live_ratio from persisted value so display shows correct number
@@ -254,6 +269,8 @@ void setup() {
     Serial.println("Audio Synth Ready. Waiting for MIDI...");
 
     // Load last pitch-detection result (set by PitchDetector before reboot).
+    // Restore the previous microphone result after the capture-triggered reboot.
+    // It describes detected pitch class, not the last keyboard note played.
     detected_key = PitchDetector::loadFromNVS();
     if (detected_key.valid) {
         Serial.printf("Detected key: %s (%.1f Hz)\n",
@@ -273,6 +290,8 @@ void loop() {
     while (Serial2.available()) {
         uint8_t b = Serial2.read();
 
+        // Any high-bit byte resets this simple parser's state; unsupported
+        // realtime/one-byte messages are not fully decoded by this legacy loop.
         if (b >= 0x80) { // Status byte
             status_byte = b;
             midi_state = 1;
@@ -288,9 +307,13 @@ void loop() {
     // 2. Generate Audio
     // StreamCopy pulls from the synth effect chain and pushes to the codec.
     // It copies as much as the codec can accept in this iteration.
+    // The codec's available space determines how much audio is transferred.
+    // Blocking web/MIDI work before this call can still affect legacy timing.
     copier.copy();
 
     // Sync software volume (set via Web/MIDI) to codec HW volume.
+    // Change codec volume only when its desired value changes. Reissuing
+    // the hardware control every loop would add unnecessary bus traffic.
     static int lastVol = -1;
     int v = synth.getVolume();
     if (v != lastVol) {

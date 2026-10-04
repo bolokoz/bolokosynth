@@ -23,8 +23,12 @@ constexpr int I2S_LRC = 12;
 constexpr int I2S_DIN = 13;
 constexpr uint32_t SAMPLE_RATE = 8000;
 constexpr int16_t TEST_AMPLITUDE = 900;
+// USB callback supplies the latest note pitch; loop snapshots it per buffer.
+// volatile provides visibility for this small scalar, not a general lock.
 volatile uint16_t toneHz = 440;
 
+// RGB_BUILTIN is an addressable LED, so digitalWrite would not select blue.
+// This diagnostic toggles on Note On; it is not a connection-verification LED.
 static void setTestLed(bool on)
 {
     ledOn = on;
@@ -42,6 +46,8 @@ void setup()
     Serial.printf("I2S pins: BCLK=%d LRC=%d DIN=%d\n",
                   I2S_BCLK, I2S_LRC, I2S_DIN);
 
+    // Bind the made wiring before starting stereo I2S. Neither initialization
+    // nor this error loop proves that the MAX or passive speaker is connected.
     i2s.setPins(I2S_BCLK, I2S_LRC, I2S_DIN);
     if (!i2s.begin(I2S_MODE_STD,
                    SAMPLE_RATE,
@@ -67,12 +73,16 @@ void setup()
         espUsbHostPrint(device);
     });
 
+    // Historical behavior intentionally ignores Note Off: a continuously
+    // sounding test tone makes power/startup faults easier to observe.
     usb.onMidiMessage([](const EspUsbHostMidiMessage &message) {
         const uint8_t type = message.status & 0xF0;
 
         // Change pitch and toggle once for a real Note On.
         if (type == 0x90 && message.data2 != 0) {
             setTestLed(!ledOn);
+            // Equal-tempered MIDI conversion, A4(note69)=440Hz. Integer-Hz
+            // rounding and the8kHz sample rate limit this diagnostic's fidelity.
             toneHz = static_cast<uint16_t>(roundf(
                 440.0f * powf(2.0f, (static_cast<int>(message.data1) - 69) / 12.0f)));
             Serial.printf("NOTE ON: note=%u velocity=%u LED=%s tone=%u Hz\n",
@@ -94,6 +104,8 @@ void loop()
 {
     // Generate a continuous low-volume square-wave test tone. The tone
     // changes pitch when a MIDI Note On arrives.
+    // Persist phase across buffers to avoid restarting each128-frame chunk.
+    // Duplicate the one waveform into both slots because MAX selects one slot.
     static float phase = 0.0f;
     int16_t frames[128 * 2];
     const float increment = static_cast<float>(toneHz) / SAMPLE_RATE;
@@ -107,5 +119,7 @@ void loop()
             phase -= 1.0f;
         }
     }
+    // I2S consumption paces the continuous test; no delay is added. This
+    // legacy path does not check short writes as the active P4 firmware does.
     i2s.write(reinterpret_cast<const uint8_t *>(frames), sizeof(frames));
 }

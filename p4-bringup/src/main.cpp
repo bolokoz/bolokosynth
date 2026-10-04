@@ -35,8 +35,12 @@ constexpr int MAX_PRESENCE_GPIO = 22;
 constexpr int TFT_PRESENCE_GPIO = 23;
 constexpr uint32_t SAMPLE_RATE = 48000;
 constexpr int16_t TEST_AMPLITUDE = DEFAULT_SIGNAL_AMPLITUDE;
+// 256 frames at 48 kHz represent about 5.33 ms of audio. Smaller buffers
+// improve control latency but increase write overhead; larger ones do the reverse.
 constexpr size_t FRAMES_PER_BUFFER = 256;
 
+// Queue only numeric MIDI fields. Library packet/device pointers may expire
+// after the callback returns or when a USB device is unplugged.
 struct MidiEvent {
     uint8_t codeIndex;
     uint8_t status;
@@ -49,6 +53,9 @@ struct UiSnapshot {
     SynthUiStatus status;
 };
 
+// Ownership boundary: loop() owns synth/controls; uiTask owns screen.
+// Queues copy messages between them. Atomics are for flags/counters that
+// cross tasks, not a substitute for locking arbitrary synth state.
 QueueHandle_t midiQueue = nullptr;
 QueueHandle_t uiActionQueue = nullptr;
 QueueHandle_t uiSnapshotQueue = nullptr;
@@ -81,6 +88,8 @@ uint32_t noteOnCount = 0;
 uint32_t noteOffCount = 0;
 uint64_t audioBytes = 0;
 
+// Avoid resending identical RGB values: addressable-LED writes have a cost
+// even when nothing visible changes. Pack RGB into one cached comparison.
 static void setStatusLed(uint8_t red, uint8_t green, uint8_t blue) {
     static uint32_t previous = UINT32_MAX;
     const uint32_t color = (uint32_t(red) << 16) | (uint32_t(green) << 8) | blue;
@@ -90,10 +99,14 @@ static void setStatusLed(uint8_t red, uint8_t green, uint8_t blue) {
     }
 }
 
+// A missing UI heartbeat means the task failed/stalled; it cannot tell us
+// whether the panel itself is plugged in. Unsigned subtraction handles wrap.
 static bool tftSoftwareError(uint32_t now) {
     return uiTaskFailed || now - uiHeartbeatMs.load() > 3000;
 }
 
+// ModuleHealth decides blink-pattern precedence. MIDI blue is momentary;
+// USB green indicates enumeration, not proof of a usable MIDI instrument.
 static void updateStatusLed(uint32_t now, size_t deviceCount) {
     const auto color = diagnosticColor(now, maxHealth.state(audioFault || !audioReady),
         tftHealth.state(tftSoftwareError(now)), fault || droppedMidi.load() || droppedUi.load(),
@@ -114,6 +127,8 @@ static void setPresenceMonitoring(bool enabled) {
 // Only the control task writes this; only the UI task touches the TFT.
 static uint32_t feedbackSequence = 0;
 static char feedbackName[32]{}, feedbackValue[32]{}, feedbackHint[32]{};
+// Keep only the latest interaction. A sequence change refreshes the popup
+// timer even if a knob is at its limit and the formatted value stays the same.
 static void showFeedback(const char *name, const char *value, const char *hint) {
     snprintf(feedbackName, sizeof(feedbackName), "%s", name);
     snprintf(feedbackValue, sizeof(feedbackValue), "%s", value);
@@ -126,6 +141,9 @@ static void showParameterFeedback(Parameter parameter, const char *hint) {
     showFeedback(SynthControls::parameterName(parameter), value, hint);
 }
 
+// One-slot overwrite queue: the UI needs the newest state, not a backlog of
+// obsolete frames. Format/copy strings here so the UI never reads controls
+// concurrently or holds pointers into USB/controller-owned storage.
 static void publishUi() {
     if (!uiSnapshotQueue) return;
     UiSnapshot snapshot{};
@@ -137,6 +155,8 @@ static void publishUi() {
     snprintf(status.feedbackHint, sizeof(status.feedbackHint), "%s", feedbackHint);
     status.learning = controls.learning();
     snprintf(status.controllerName, sizeof(status.controllerName), "%s", profileName(controllerProfile));
+    // Learning temporarily overrides the selected row when showing binding
+    // information. Otherwise the user can inspect the current menu target.
     const Parameter target = status.learning ? controls.learningParameter() : selectedParameter;
     status.learnTarget = target;
     const auto &binding = controls.binding(target);
@@ -152,8 +172,12 @@ static void publishUi() {
     xQueueOverwrite(uiSnapshotQueue, &snapshot);
 }
 
+// Pin all SPI drawing and local input polling to this task. The audio loop
+// remains the only writer of synth state; UI actions request changes by queue.
 static void uiTask(void *) {
     uiReady.store(screen.begin());
+    // Publish an initial heartbeat before task creation to avoid diagnosing
+    // startup as a stall. Queue allocation/task failure remains an explicit fault.
     uiHeartbeatMs.store(millis());
     UiSnapshot snapshot{};
     for (;;) {
@@ -164,13 +188,19 @@ static void uiTask(void *) {
         if (action.type != UiActionType::None && xQueueSend(uiActionQueue, &action, 0) != pdTRUE) {
             ++droppedUi;
         }
+        // Nonblocking receive retains the last snapshot when no new one arrived.
+        // The UI can still expire popups, poll buttons and finish dirty regions.
         xQueueReceive(uiSnapshotQueue, &snapshot, 0);
         screen.render(snapshot.config, snapshot.status);
         uiHeartbeatMs.store(millis());
+        // Yield to the scheduler rather than busy-spinning on encoder input.
+        // Each render call draws a limited region, not an entire screen.
         vTaskDelay(pdMS_TO_TICKS(2));
     }
 }
 
+// Human-readable parameter/binding dump, useful for distinguishing a wrong
+// controller mapping from a valid knob that is still waiting for pickup.
 static void printConfig() {
     if (!Serial) return;
     char value[32], binding[48];
@@ -182,6 +212,8 @@ static void printConfig() {
     }
 }
 
+// Learn listens for the next CC. The MiniLab factory profile supplies a mode
+// hint; an explicit user mode choice can override that hint afterward.
 static void beginLearn(Parameter parameter) {
     selectedParameter = parameter;
     controls.beginLearn(parameter, controls.learnMode());
@@ -190,6 +222,8 @@ static void beginLearn(Parameter parameter) {
                               SynthControls::parameterName(parameter), SynthControls::modeName(controls.learnMode()));
 }
 
+// Cycling an already assigned knob also updates its existing binding. Merely
+// changing the mode for a future Learn session would leave that knob broken.
 static void cycleLearnMode(int steps) {
     learnModeFromProfile = false;
     const auto binding = controls.binding(selectedParameter);
@@ -223,6 +257,8 @@ static void traceLocalInputs() {
     }
 }
 
+// Drain a bounded number of actions before audio generation. Configure the
+// DSP only after a parameter actually changed; selection alone is UI state.
 static void processUi() {
     UiAction action;
     for (unsigned count = 0; uiActionQueue && count < 8 &&
@@ -260,6 +296,9 @@ static void processUi() {
     }
 }
 
+// Diagnostics distinguish software readiness from physical verification.
+// Pitch/envelope describe one representative voice; POLYPHONY reports the
+// full sounding pool, including release tails. HELD can exceed three after stealing.
 static void printStatus() {
     if (!Serial) {
         return;
@@ -294,6 +333,9 @@ static void printStatus() {
     }
 }
 
+// Auto-select defaults once per detected controller identity. Reapplying on
+// every loop would erase user Learn assignments and repeatedly rearm pickup.
+// Manual K/G selection disables automatic switching for this boot.
 static void updateControllerProfile() {
     if (!automaticProfile) return;
     EspUsbHostDeviceInfo devices[4];
@@ -321,9 +363,14 @@ static void processMidi() {
          xQueueReceive(midiQueue, &event, 0) == pdTRUE; ++processed) {
         midiSeen = true;
         lastMidiMs = millis();
+        // USB codeIndex (CIN) and the MIDI status must agree. Validate 7-bit
+        // payloads before passing them to note, bend or controller handlers.
+        // The status low nibble keeps identical notes on different channels distinct.
         const uint8_t type = event.status & 0xF0;
         if (event.codeIndex == 0x09 && type == 0x90 &&
             event.data1 < 128 && event.data2 > 0 && event.data2 < 128) {
+            // PolySynth allocates/retriggers a slot and applies per-note velocity;
+            // the shared patch does not restart unrelated voices' envelopes.
             synth.noteOn(event.status & 0x0F, event.data1, event.data2);
             ++noteOnCount;
             if (Serial) {
@@ -333,6 +380,8 @@ static void processMidi() {
         } else if (event.data1 < 128 && event.data2 < 128 &&
                    ((event.codeIndex == 0x08 && type == 0x80) ||
                     (event.codeIndex == 0x09 && type == 0x90 && event.data2 == 0))) {
+            // Velocity-zero Note On is also Note Off. Release only its matching
+            // channel/key; the allocator protects replacement voices from stale offs.
             synth.noteOff(event.status & 0x0F, event.data1);
             ++noteOffCount;
             if (Serial) {
@@ -341,6 +390,8 @@ static void processMidi() {
             }
         } else if (event.codeIndex == 0x0E && type == 0xE0 &&
                    event.data1 < 128 && event.data2 < 128) {
+            // Pitch bend is 14-bit, LSB first, with center8192. The synth stores
+            // it per channel even before a note starts and preserves ADSR timing.
             synth.pitchBend(event.status & 0x0F, event.data1, event.data2);
             static uint32_t lastBendLogMs = 0;
             if (Serial && (millis() - lastBendLogMs >= 100 ||
@@ -353,10 +404,14 @@ static void processMidi() {
             }
         } else if (event.codeIndex == 0x0B && type == 0xB0 &&
                    event.data1 == 121 && event.data2 < 128) {
+            // CC121 recenters bend/modulation without resetting the patch or
+            // releasing notes; these controller states are channel-specific.
             synth.resetControllers(event.status & 0x0F);
         } else if (event.codeIndex == 0x0B && type == 0xB0 &&
                    event.data1 < 128 && event.data2 < 128 &&
                    (event.data1 == 120 || event.data1 == 123)) {
+            // CC120 All Sound Off cuts release tails immediately; CC123 All
+            // Notes Off closes gates and lets each ADSR release normally.
             synth.allNotesOff(event.status & 0x0F, event.data1 == 120);
         } else if (event.codeIndex == 0x0B && type == 0xB0 &&
                    event.data1 < 120 && event.data2 < 128) {
@@ -365,13 +420,19 @@ static void processMidi() {
                 Serial.printf("CC RAW: channel=%u controller=%u value=%u\n",
                               (event.status & 0x0F) + 1, event.data1, event.data2);
             }
+            // Save Learn state before applyCC: that call may consume the message
+            // as an assignment and end the learning session.
             const bool wasLearning = controls.learning();
             if (wasLearning && learnModeFromProfile && (event.status & 0x0F) == 0)
                 controls.setLearnMode(profileMode(controllerProfile, event.data1, controls.learnMode()));
+            // A learned CC1 binding takes priority over the default vibrato
+            // strip. Learning must not also modulate notes as a side effect.
             const bool defaultVibrato = event.data1 == 1 && !controls.learning() &&
                                         !controls.hasBinding(event.status & 0x0F, event.data1);
             const Parameter target = controls.learningParameter();
             const ControlResult result = controls.applyCC(event.status & 0x0F, event.data1, event.data2);
+            // Only unassigned clicks invoke profile actions. A learned mapping
+            // owns its CC, so a click cannot both edit a parameter and panic/reload.
             if (!wasLearning && !controls.hasBinding(event.status & 0x0F, event.data1)) {
                 const auto action = controllerButtons.apply(controllerProfile, event.status & 0x0F, event.data1, event.data2);
                 if (action == ControllerAction::ReloadSound) {
@@ -384,6 +445,8 @@ static void processMidi() {
                     if (Serial) Serial.println("CONTROLLER: panic/silent");
                 }
             }
+            // Clear the default modulation when CC1 is reassigned, otherwise
+            // the last vibrato depth could remain audible with no way to change it.
             if (event.data1 == 1) synth.modulation(event.status & 0x0F, defaultVibrato ? event.data2 : 0);
             if (result == ControlResult::Changed) {
                 synth.configure(controls.config());
@@ -433,6 +496,8 @@ static void processMidi() {
 }
 
 void setup() {
+    // Begin with SD low so MAX stays muted while peripherals start. HIGH
+    // later selects its left I2S slot, which contains the same mono mix as right.
     pinMode(MAX_ENABLE_GPIO, OUTPUT);
     digitalWrite(MAX_ENABLE_GPIO, LOW); // Keep amp disabled until I2S initializes.
     Serial.begin(115200);
@@ -446,16 +511,22 @@ void setup() {
                   I2S_BCLK, I2S_LRC, I2S_DIN, static_cast<unsigned long>(SAMPLE_RATE));
     Serial.printf("RGB: GPIO%u; FUSB=laptop, HUSB=powered MIDI keyboard\n", STATUS_LED_GPIO);
 
+    // Bounded storage absorbs brief USB bursts without allocating per event.
+    // Failure/overflow is surfaced; dropping a Note Off silently risks stuck notes.
     midiQueue = xQueueCreate(64, sizeof(MidiEvent));
     if (!midiQueue) {
         fault = true;
         Serial.println("ERROR: MIDI event queue allocation failed");
     }
 
+    // Initialize DSP defaults before enabling the amplifier. Stereo I2S framing
+    // is required even though synthesis and the physical MAX output are mono.
     synth.configure(controls.config());
     i2s.setPins(I2S_BCLK, I2S_LRC, I2S_DIN);
     audioReady = i2s.begin(I2S_MODE_STD, SAMPLE_RATE,
                            I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_STEREO);
+    // Latch startup failure but continue bringing up USB/UI diagnostics;
+    // the amplifier stays disabled because no valid I2S stream exists.
     if (!audioReady) {
         audioFault = true;
         fault = true;
@@ -465,6 +536,8 @@ void setup() {
         Serial.println("I2S ready: silent until MIDI Note On; ADSR 5ms/50ms/70%/200ms");
     }
 
+    // Register callbacks before starting the host. Callbacks must not draw,
+    // generate audio, or mutate the voice pool; loop() consumes copied events.
     usb.onMidiMessage([](const EspUsbHostMidiMessage &message) {
         // Ignore empty/reserved USB MIDI packets observed in the earlier capture.
         if (!midiQueue || panicRequested.load() || message.codeIndex < 2 || message.status < 0x80) {
@@ -472,16 +545,22 @@ void setup() {
         }
         // Copy values only: the library's raw packet buffer is transient.
         const MidiEvent event{message.codeIndex, message.status, message.data1, message.data2};
+        // Never wait inside the USB callback. On overflow request Panic rather
+        // than let an incomplete note sequence leave a voice permanently held.
         if (xQueueSend(midiQueue, &event, 0) != pdTRUE) {
             ++droppedMidi;
             panicRequested.store(true);
         }
     });
 
+    // A detach can remove the device before its Note Off arrives. Request a
+    // loop-owned reset and discard pending events from the disconnected device.
     usb.onDeviceDisconnected([](const EspUsbHostDeviceInfo &) {
         panicRequested.store(true);
     });
 
+    // P4 HUSB is the high-speed host; FUSB remains available for flashing/logs.
+    // Starting the host does not provide VBUS power: the injector supplies that.
     EspUsbHostConfig config;
     config.port = ESP_USB_HOST_PORT_HIGH_SPEED;
     hostReady = usb.begin(config);
@@ -516,21 +595,29 @@ void loop() {
     static uint32_t lastStatusMs = 0;
     static size_t previousDeviceCount = SIZE_MAX;
 
+    // Handle callback-requested Panic before consuming more events. Reset the
+    // queue as well as voices so pre-detach/overflow notes cannot restart sound.
     if (panicRequested.load()) {
         if (midiQueue) xQueueReset(midiQueue);
         synth.panic();
         panicRequested.store(false);
         if (Serial) Serial.println("PANIC: cleared notes and pending MIDI after detach/overflow");
     }
+    // Order matters: establish controller defaults, apply local edits, then
+    // decode queued MIDI. All three stages run under the audio loop's ownership.
     updateControllerProfile();
     traceLocalInputs();
     processUi();
     processMidi();
 
+    // One console byte per iteration bounds diagnostic work. Display commands
+    // set atomic requests for uiTask; they never call SPI from this loop.
     if (Serial.available()) {
         const int command = Serial.read();
         if (command == 's' || command == 'S') {
             printStatus();
+        // A/F records human confirmation, not automatic electrical detection.
+        // Optional presence wires and software faults can reject confirmation.
         } else if (command == 'A' || command == 'F') {
             const bool isMax = command == 'A';
             const bool accepted = isMax ? maxHealth.confirm(audioFault || !audioReady)
@@ -571,12 +658,16 @@ void loop() {
             }
         } else if (command == 'c') {
             printConfig();
+        // Lock this boot to explicit profile choice; automatic enumeration
+        // must not overwrite the user's selected mappings on the next loop.
         } else if (command == 'K' || command == 'G') {
             automaticProfile = false;
             controllerProfile = command == 'K' ? ControllerProfile::MiniLabMkII : ControllerProfile::Generic;
             loadControllerProfile(controls, controllerProfile);
             controllerButtons.reset();
             Serial.printf("CONTROLLER: %s selected manually\n", profileName(controllerProfile));
+        // Debug traces are opt-in and expire/stop after a bounded count.
+        // Verbose continuous serial output would otherwise compete with audio.
         } else if (command == 'e') {
             localTraceUntil = millis() + 60000;
             localTraceLevels = 0xFF;
@@ -610,10 +701,14 @@ void loop() {
     const uint32_t now = millis();
     const size_t deviceCount = usb.deviceCount();
     static uint32_t lastUiMs = 0;
+    // State snapshots are limited to10Hz; input polling/popup expiry happen
+    // independently on the UI task. Coalesce fast CC streams into latest values.
     if (now - lastUiMs >= 100) {
         lastUiMs = now;
         publishUi();
     }
+    // LED/presence sampling runs at50Hz; debounce/pattern logic lives in
+    // ModuleHealth. Disabled sensing leaves unused presence pins as inputs.
     if (now - lastLedMs >= 20) {
         lastLedMs = now;
         if (maxHealth.presenceEnabled()) maxHealth.sample(now, digitalRead(MAX_PRESENCE_GPIO) == HIGH);
@@ -626,21 +721,28 @@ void loop() {
         printStatus();
     }
 
+    // Keep MIDI/UI/diagnostics alive after an I2S startup failure, but never
+    // write to an uninitialized audio peripheral. Yield briefly on this path.
     if (!audioReady) {
         delay(10);
         return;
     }
 
-    // Advance ADSR once per frame, then duplicate mono output into stereo.
-    // Idle/released envelopes produce exact zero while I2S continues running.
+    // Advance each voice's ADSR once per frame, then duplicate the mono mix.
+    // Release tails keep sounding; only idle/fully released envelopes are zero.
+    // Keep I2S running even during silence so the next note needs no restart.
     int16_t frames[FRAMES_PER_BUFFER * 2];
     for (size_t index = 0; index < FRAMES_PER_BUFFER; ++index) {
         const int16_t sample = synth.nextSample();
         frames[index * 2] = sample;
         frames[index * 2 + 1] = sample;
     }
+    // Write an interleaved L/R buffer to I2S DMA. Hardware consumption paces
+    // this loop; an extra delay here would create gaps in the audio stream.
     const size_t written = i2s.write(reinterpret_cast<const uint8_t *>(frames), sizeof(frames));
     audioBytes += written;
+    // Count bytes actually accepted. A short write latches an audio fault;
+    // this checks transport progress, not speaker connection or audible quality.
     if (written != sizeof(frames)) {
         audioFault = true;
         fault = true;
