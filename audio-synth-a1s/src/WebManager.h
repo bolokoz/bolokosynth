@@ -1,3 +1,10 @@
+/*
+ * Legacy AudioKit HTTP configuration interface and MIDI mapping accessors.
+ * These WiFi/WebServer settings do not apply to the USB/TFT P4 prototype.
+ * Defaults are restored from NVS for mapping/detection controls; synth volume
+ * and waveform live in the Synth facade. Routes run from handle() in the loop.
+ */
+
 #ifndef WEB_MANAGER_H
 #define WEB_MANAGER_H
 

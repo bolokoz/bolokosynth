@@ -1,3 +1,11 @@
+/*
+ * Legacy S2 display/USB-host scaffold, separate from the active P4 v1 firmware.
+ * The receive callback is a placeholder; this program does not implement the
+ * complete MIDI-to-synth bridge. TFT pins in platformio.ini are tentative and
+ * require the exact board schematic. A host-start message is not proof of MIDI
+ * enumeration or adequate VBUS power.
+ */
+
 #include <Arduino.h>
 #include <TFT_eSPI.h>
 #include "EspUsbHost.h"

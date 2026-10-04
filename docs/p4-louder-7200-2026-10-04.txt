@@ -1,0 +1,28 @@
+CONFIG: Attack=5.0 ms [Ch1 CC74 ABS pickup]
+CONFIG: Decay=50 ms [Ch1 CC71 ABS pickup]
+CONFIG: Sustain=70% [Ch1 CC76 ABS pickup]
+CONFIG: Release=200 ms [Ch1 CC77 ABS pickup]
+CONFIG: Waveform=Square [Ch1 CC93 ABS pickup]
+CONFIG: Volume=50% [Ch1 CC72 ABS pickup]
+CONFIG: Preset=Init Square [Ch1 CC112 REL SIGN]
+CONFIG: OSC1 Level=100% [Ch1 CC73 ABS pickup]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Ch1 CC75 ABS pickup]
+CONFIG: OSC2 Shape=Saw [Ch1 CC18 ABS pickup]
+CONFIG: OSC2 Level=0% [Ch1 CC19 ABS pickup]
+CONFIG: OSC2 Coarse=+0 st [Ch1 CC16 ABS pickup]
+CONFIG: OSC2 Fine=+0 ct [Ch1 CC17 ABS pickup]
+CONFIG: OSC3 Shape=Sine [Ch1 CC114 REL SIGN]
+CONFIG: OSC3 Level=0% [Ch1 CC91 ABS pickup]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Ch1 CC79 ABS pickup]
+STATUS: I2S=ready HUSB=ready devices=1 tone=392.0Hz env=idle level=0.000 held=0 noteOn=9 noteOff=10 audioBytes=2939904 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+AMP ENABLE: SD/EN=IO17 level=HIGH (output level, not hardware detection)
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=392.0Hz env=idle level=0.000 held=0 noteOn=9 noteOff=10 audioBytes=3149824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+AMP ENABLE: SD/EN=IO17 level=HIGH (output level, not hardware detection)
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289

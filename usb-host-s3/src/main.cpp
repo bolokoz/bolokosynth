@@ -1,64 +1,111 @@
+/*
+ * Historical S3 MAX/USB-host bring-up: continuous quiet square test tone.
+ * Note On changes pitch; Note Off deliberately does not stop this diagnostic.
+ * This is not the active P4 v1 synth. The tested board's serial-port cold-start
+ * issue remains electrically unresolved; see reset-startup.md for the observed
+ * ROM-mode software-reset workaround. Never infer speaker/USB wiring health
+ * from an LED or successful peripheral initialization alone.
+ */
+
 #include <Arduino.h>
+#include <math.h>
 #include "EspUsbHost.h"
+#include "ESP_I2S.h"
 
-// UART pins to communicate with AudioKit
-// Connect GPIO 17 (TX) to AudioKit RX
-// Connect GPIO 18 (RX) to AudioKit TX
-#define MIDI_TX_PIN 17
-#define MIDI_RX_PIN 18
+EspUsbHost usb;
+I2SClass i2s;
+bool ledOn = false;
 
-class MidiHost : public EspUsbHost {
-public:
-    // Override onData to receive USB transfer data
-    // This assumes the library successfully enumerates the MIDI device
-    // and submits transfers for its endpoints.
-    // If the device is strictly MIDI Class (not HID), EspUsbHost might need
-    // adjustment or a specific MIDI driver.
-    void onData(const usb_transfer_t *transfer) override {
-        if (transfer->status == 0 && transfer->actual_num_bytes > 0) {
-            uint8_t *data = transfer->data_buffer;
-            size_t len = transfer->actual_num_bytes;
+// These match the wiring currently made on the board:
+// GPIO11 -> MAX98357A BCLK, GPIO12 -> LRC/LRCLK, GPIO13 -> DIN.
+constexpr int I2S_BCLK = 11;
+constexpr int I2S_LRC = 12;
+constexpr int I2S_DIN = 13;
+constexpr uint32_t SAMPLE_RATE = 8000;
+constexpr int16_t TEST_AMPLITUDE = 900;
+volatile uint16_t toneHz = 440;
 
-            // USB MIDI packets are 32-bit (4 bytes)
-            for (size_t i = 0; i < len; i += 4) {
-                if (i + 4 <= len) {
-                    uint8_t cin = data[i] & 0x0F;
-                    uint8_t m0 = data[i+1];
-                    uint8_t m1 = data[i+2];
-                    uint8_t m2 = data[i+3];
-
-                    // Filter for Note On (0x9), Note Off (0x8), Control Change (0xB)
-                    if (cin == 0x8 || cin == 0x9 || cin == 0xB) {
-                         // Forward Standard MIDI message to UART
-                         Serial1.write(m0);
-                         Serial1.write(m1);
-                         Serial1.write(m2);
-
-                         Serial.printf("MIDI: Status=%02X D1=%02X D2=%02X\n", m0, m1, m2);
-                    }
-                }
-            }
-        }
-    }
-
-    // Note: If the device is not detected, check if it presents as HID or Audio Class.
-    // EspUsbHost is optimized for HID but exposes generic USB Host capabilities.
-    // If your MIDI controller is not detected, you may need to use a dedicated USB Host MIDI library
-    // or ensure EspUsbHost is configured to accept Class 0x01 (Audio/MIDI).
-};
-
-MidiHost usbHost;
-
-void setup() {
-    Serial.begin(115200);
-    // Initialize UART for MIDI output to AudioKit
-    // Standard MIDI baud rate is 31250
-    Serial1.begin(31250, SERIAL_8N1, MIDI_RX_PIN, MIDI_TX_PIN);
-
-    Serial.println("Starting USB Host...");
-    usbHost.begin();
+static void setTestLed(bool on)
+{
+    ledOn = on;
+    // The DevKitC-1 onboard LED is an addressable RGB LED.
+    rgbLedWrite(RGB_BUILTIN, 0, 0, ledOn ? 64 : 0);
 }
 
-void loop() {
-    usbHost.task();
+void setup()
+{
+    Serial.begin(115200);
+    delay(500);
+    setTestLed(false);
+
+    Serial.println("MAX98357A I2S + USB MIDI test starting...");
+    Serial.printf("I2S pins: BCLK=%d LRC=%d DIN=%d\n",
+                  I2S_BCLK, I2S_LRC, I2S_DIN);
+
+    i2s.setPins(I2S_BCLK, I2S_LRC, I2S_DIN);
+    if (!i2s.begin(I2S_MODE_STD,
+                   SAMPLE_RATE,
+                   I2S_DATA_BIT_WIDTH_16BIT,
+                   I2S_SLOT_MODE_STEREO)) {
+        Serial.println("ERROR: I2S initialization failed");
+        while (true) {
+            setTestLed(true);
+            delay(100);
+            setTestLed(false);
+            delay(100);
+        }
+    }
+    Serial.println("I2S ready. You should hear a 440 Hz test tone.");
+
+    usb.onDeviceConnected([](const EspUsbHostDeviceInfo &device) {
+        Serial.print("USB connected: ");
+        espUsbHostPrint(device);
+    });
+
+    usb.onDeviceDisconnected([](const EspUsbHostDeviceInfo &device) {
+        Serial.print("USB disconnected: ");
+        espUsbHostPrint(device);
+    });
+
+    usb.onMidiMessage([](const EspUsbHostMidiMessage &message) {
+        const uint8_t type = message.status & 0xF0;
+
+        // Change pitch and toggle once for a real Note On.
+        if (type == 0x90 && message.data2 != 0) {
+            setTestLed(!ledOn);
+            toneHz = static_cast<uint16_t>(roundf(
+                440.0f * powf(2.0f, (static_cast<int>(message.data1) - 69) / 12.0f)));
+            Serial.printf("NOTE ON: note=%u velocity=%u LED=%s tone=%u Hz\n",
+                          message.data1,
+                          message.data2,
+                          ledOn ? "ON" : "OFF",
+                          toneHz);
+        }
+    });
+
+    if (!usb.begin()) {
+        Serial.printf("usb.begin() failed: %s\n", usb.lastErrorName());
+    } else {
+        Serial.println("USB host ready. Press a MIDI note to change pitch.");
+    }
+}
+
+void loop()
+{
+    // Generate a continuous low-volume square-wave test tone. The tone
+    // changes pitch when a MIDI Note On arrives.
+    static float phase = 0.0f;
+    int16_t frames[128 * 2];
+    const float increment = static_cast<float>(toneHz) / SAMPLE_RATE;
+
+    for (size_t i = 0; i < 128; ++i) {
+        const int16_t sample = phase < 0.5f ? TEST_AMPLITUDE : -TEST_AMPLITUDE;
+        frames[i * 2] = sample;
+        frames[i * 2 + 1] = sample;
+        phase += increment;
+        if (phase >= 1.0f) {
+            phase -= 1.0f;
+        }
+    }
+    i2s.write(reinterpret_cast<const uint8_t *>(frames), sizeof(frames));
 }

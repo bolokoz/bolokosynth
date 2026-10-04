@@ -1,6 +1,10 @@
 # BolokoSynth
 
-BolokoSynth is a modular, ESP32-based polyphonic synthesizer ecosystem. It features high-quality audio generation using the ESP32 AudioKit, optional OLED visualization, and a web-based configuration portal. The project also includes dedicated USB Host sub-projects (for ESP32-S2 and S3) to bridge USB MIDI controllers to the main synthesizer via hardware Serial.
+**V1 complete — active P4 synth:** [current status, wiring and next work](docs/current-status.md) (updated 2026-10-04).
+
+BolokoSynth v1 runs on the WT9932P4-TINY with USB MIDI, three-note polyphony, three oscillators per note, MAX98357 speaker output and TFT/encoder menus. It includes ADSR, eight sounds, MiniLab MkII defaults, MIDI Learn and knob feedback popups. See [v1 release notes](docs/v1-release.md).
+
+The repository also retains the earlier AudioKit/OLED/web synth and S2/S3 host experiments; these are separate hardware targets.
 
 ![Project Schema](schema.svg)
 
@@ -18,6 +22,17 @@ The goal of BolokoSynth is to provide a flexible and extensible platform for dig
 - `audio-synth-a1s/`: The main synthesizer firmware designed for the AI-Thinker ESP32 AudioKit.
 - `usb-host-s2-ttgo/`: Companion firmware for ESP32-S2 (e.g., LilyGO TTGO) to act as a USB MIDI Host with display.
 - `usb-host-s3/`: Minimal companion firmware for ESP32-S3 to act as a USB MIDI Host.
+- `p4-bringup/`: WT9932P4-TINY three-note USB MIDI + MAX98357A synth with TFT/encoder menus, three-oscillator sound presets, live ADSR/tuning/volume and MIDI Learn; see [menu guide](docs/p4-menu.md) and [audio wiring / LED guide](docs/p4-tone-test.md).
+- `docs/display-encoder.md`: Purchased TFT display and EC11 encoder with the current P4 wiring map and legacy S3 mapping.
+- `docs/hardware-inventory.md`: Owned speakers, MAX/PCM/PAM boards, purchase links and loudness options.
+- `docs/usb-audio-power-plan.md`: USB-only loudness target, speaker options and verified 50% startup volume.
+- `docs/midi-controller-profiles.md`: MiniLab MkII defaults and extensible MIDI profiles.
+- `docs/p4-midi-sliders.md`: CC1 vibrato, pitch bend, slider Learn and fixing existing knob modes.
+- `docs/p4-sounds.md`: Sound bank, three-oscillator editing and MIDI Learn navigation.
+- `docs/module-diagnostics.md`: MAX/TFT verification limits, RGB blink codes and optional presence sensing.
+- `docs/tft-investigation.md`: Saved TFT brightness/initialization observations and deferred diagnostics.
+- `docs/reset-startup.md`: ESP32-S3 startup diagnosis and verified software-reset workaround.
+- `docs/gpio-screening.md`: Limited input-only screen for adjacent header GPIO soldering faults.
 - `schema.svg`: Architectural overview of the system.
 
 ---

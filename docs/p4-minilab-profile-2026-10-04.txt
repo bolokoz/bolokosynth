@@ -1,0 +1,34 @@
+CONFIG: Attack=3.0 ms [Ch1 CC74 ABS pickup]
+CONFIG: Decay=350 ms [Ch1 CC71 ABS pickup]
+CONFIG: Sustain=0% [Ch1 CC76 ABS pickup]
+CONFIG: Release=150 ms [Ch1 CC77 ABS pickup]
+CONFIG: Waveform=Saw [Ch1 CC93 ABS pickup]
+CONFIG: Volume=25% [Ch1 CC72 ABS pickup]
+CONFIG: Preset=Pluck [Ch1 CC112 REL SIGN]
+CONFIG: OSC1 Level=100% [Ch1 CC73 ABS pickup]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Ch1 CC75 ABS pickup]
+CONFIG: OSC2 Shape=Triangle [Ch1 CC18 ABS pickup]
+CONFIG: OSC2 Level=50% [Ch1 CC19 ABS pickup]
+CONFIG: OSC2 Coarse=+12 st [Ch1 CC16 ABS pickup]
+CONFIG: OSC2 Fine=+3 ct [Ch1 CC17 ABS pickup]
+CONFIG: OSC3 Shape=Sine [Ch1 CC114 REL SIGN]
+CONFIG: OSC3 Level=0% [Ch1 CC91 ABS pickup]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Ch1 CC79 ABS pickup]
+STATUS: I2S=ready HUSB=ready devices=1 tone=1396.9Hz env=idle level=0.000 held=0 noteOn=399 noteOff=400 audioBytes=155583488 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=1396.9Hz env=idle level=0.000 held=0 noteOn=399 noteOff=400 audioBytes=155597824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=1396.9Hz env=idle level=0.000 held=0 noteOn=399 noteOff=400 audioBytes=155981824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=1396.9Hz env=idle level=0.000 held=0 noteOn=399 noteOff=400 audioBytes=156365824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289

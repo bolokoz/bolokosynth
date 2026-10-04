@@ -1,0 +1,327 @@
+CC TRACE: next 96 CC messages, before rate-limited telemetry
+STATUS: I2S=ready HUSB=ready devices=1 tone=3136.0Hz env=idle level=0.000 held=0 noteOn=224 noteOff=225 audioBytes=48845824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+CC RAW: channel=1 controller=72 value=2
+CC: channel=1 controller=72 value=2 result=waiting/unassigned
+CC RAW: channel=1 controller=72 value=3
+CC RAW: channel=1 controller=72 value=4
+CC RAW: channel=1 controller=72 value=5
+CC RAW: channel=1 controller=72 value=6
+CC RAW: channel=1 controller=72 value=7
+CC RAW: channel=1 controller=72 value=8
+CC RAW: channel=1 controller=72 value=9
+CC RAW: channel=1 controller=72 value=10
+CC RAW: channel=1 controller=72 value=11
+CC RAW: channel=1 controller=72 value=12
+CC: channel=1 controller=72 value=12 result=waiting/unassigned
+CC RAW: channel=1 controller=72 value=13
+CC RAW: channel=1 controller=72 value=14
+CC RAW: channel=1 controller=72 value=15
+CC RAW: channel=1 controller=72 value=16
+CC RAW: channel=1 controller=72 value=17
+CC RAW: channel=1 controller=72 value=18
+CC RAW: channel=1 controller=72 value=19
+CC RAW: channel=1 controller=72 value=20
+CC RAW: channel=1 controller=72 value=21
+CC RAW: channel=1 controller=72 value=22
+CC RAW: channel=1 controller=72 value=23
+CC RAW: channel=1 controller=72 value=24
+CC RAW: channel=1 controller=72 value=25
+CC RAW: channel=1 controller=72 value=26
+CC RAW: channel=1 controller=72 value=27
+CC RAW: channel=1 controller=72 value=28
+CC RAW: channel=1 controller=72 value=29
+CC: channel=1 controller=72 value=29 result=waiting/unassigned
+NOTE ON: channel=1 note=93 velocity=78 tone=1760.0Hz
+NOTE ON: channel=1 note=95 velocity=78 tone=1975.5Hz
+NOTE OFF: channel=1 note=95 held=1 envelope=sustain
+NOTE OFF: channel=1 note=93 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=1760.0Hz env=release level=0.700 held=0 noteOn=226 noteOff=227 audioBytes=49229824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=95 velocity=52 tone=1975.5Hz
+NOTE OFF: channel=1 note=95 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=54 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=95 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=111 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=106 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=64 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=30
+CC: channel=1 controller=72 value=30 result=changed
+CC RAW: channel=1 controller=72 value=31
+CC RAW: channel=1 controller=72 value=32
+CC RAW: channel=1 controller=72 value=33
+CC RAW: channel=1 controller=72 value=34
+CC RAW: channel=1 controller=72 value=35
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+CC RAW: channel=1 controller=72 value=36
+CC: channel=1 controller=72 value=36 result=changed
+CC RAW: channel=1 controller=72 value=37
+CC RAW: channel=1 controller=72 value=38
+CC RAW: channel=1 controller=72 value=39
+CC RAW: channel=1 controller=72 value=40
+CC RAW: channel=1 controller=72 value=41
+CC RAW: channel=1 controller=72 value=42
+CC RAW: channel=1 controller=72 value=43
+CC RAW: channel=1 controller=72 value=44
+CC RAW: channel=1 controller=72 value=45
+CC: channel=1 controller=72 value=45 result=changed
+CC RAW: channel=1 controller=72 value=46
+CC RAW: channel=1 controller=72 value=47
+NOTE ON: channel=1 note=86 velocity=100 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=48
+CC RAW: channel=1 controller=72 value=49
+CC RAW: channel=1 controller=72 value=50
+CC RAW: channel=1 controller=72 value=51
+CC RAW: channel=1 controller=72 value=52
+CC RAW: channel=1 controller=72 value=53
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=1174.7Hz env=release level=0.700 held=0 noteOn=233 noteOff=234 audioBytes=49613824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+CC RAW: channel=1 controller=72 value=54
+CC: channel=1 controller=72 value=54 result=changed
+CC RAW: channel=1 controller=72 value=55
+CC RAW: channel=1 controller=72 value=56
+CC RAW: channel=1 controller=72 value=57
+CC RAW: channel=1 controller=72 value=58
+CC RAW: channel=1 controller=72 value=59
+CC RAW: channel=1 controller=72 value=60
+CC RAW: channel=1 controller=72 value=61
+CC RAW: channel=1 controller=72 value=62
+NOTE ON: channel=1 note=86 velocity=106 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=63
+CC: channel=1 controller=72 value=63 result=changed
+CC RAW: channel=1 controller=72 value=64
+CC RAW: channel=1 controller=72 value=65
+CC RAW: channel=1 controller=72 value=66
+CC RAW: channel=1 controller=72 value=67
+CC RAW: channel=1 controller=72 value=68
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+CC RAW: channel=1 controller=72 value=69
+CC: channel=1 controller=72 value=69 result=changed
+CC RAW: channel=1 controller=72 value=70
+NOTE ON: channel=1 note=86 velocity=103 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=71
+CC RAW: channel=1 controller=72 value=72
+CC RAW: channel=1 controller=72 value=73
+CC: channel=1 controller=72 value=73 result=changed
+CC RAW: channel=1 controller=72 value=74
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+CC RAW: channel=1 controller=72 value=75
+CC RAW: channel=1 controller=72 value=76
+CC RAW: channel=1 controller=72 value=77
+CC: channel=1 controller=72 value=77 result=changed
+CC RAW: channel=1 controller=72 value=78
+NOTE ON: channel=1 note=86 velocity=98 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=79
+CC RAW: channel=1 controller=72 value=80
+CC RAW: channel=1 controller=72 value=81
+CC: channel=1 controller=72 value=81 result=changed
+CC RAW: channel=1 controller=72 value=82
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+CC RAW: channel=1 controller=72 value=83
+CC RAW: channel=1 controller=72 value=84
+CC RAW: channel=1 controller=72 value=85
+CC RAW: channel=1 controller=72 value=86
+CC RAW: channel=1 controller=72 value=87
+CC RAW: channel=1 controller=72 value=88
+NOTE ON: channel=1 note=86 velocity=97 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=89
+CC: channel=1 controller=72 value=89 result=changed
+CC RAW: channel=1 controller=72 value=90
+CC RAW: channel=1 controller=72 value=91
+CC RAW: channel=1 controller=72 value=92
+CC RAW: channel=1 controller=72 value=93
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=110 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=106 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=94
+CC: channel=1 controller=72 value=94 result=changed
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=105 tone=1174.7Hz
+CC RAW: channel=1 controller=72 value=95
+CC: channel=1 controller=72 value=95 result=changed
+CC RAW: channel=1 controller=72 value=96
+CC RAW: channel=1 controller=72 value=97
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+CC: channel=1 controller=72 value=98 result=changed
+NOTE ON: channel=1 note=86 velocity=109 tone=1174.7Hz
+CC: channel=1 controller=72 value=106 result=changed
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=109 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+CC: channel=1 controller=72 value=112 result=changed
+STATUS: I2S=ready HUSB=ready devices=1 tone=1174.7Hz env=release level=0.383 held=0 noteOn=242 noteOff=243 audioBytes=49997824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=86 velocity=96 tone=1174.7Hz
+CC: channel=1 controller=72 value=125 result=changed
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=100 tone=1174.7Hz
+CC: channel=1 controller=72 value=126 result=changed
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=102 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=109 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=110 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=84 velocity=71 tone=1046.5Hz
+NOTE OFF: channel=1 note=84 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=109 tone=1174.7Hz
+NOTE ON: channel=1 note=88 velocity=111 tone=1318.5Hz
+NOTE OFF: channel=1 note=88 held=1 envelope=sustain
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=1174.7Hz env=release level=0.644 held=0 noteOn=250 noteOff=251 audioBytes=50381824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=89 velocity=56 tone=1396.9Hz
+NOTE ON: channel=1 note=88 velocity=43 tone=1318.5Hz
+NOTE OFF: channel=1 note=88 held=1 envelope=sustain
+NOTE OFF: channel=1 note=89 held=0 envelope=release
+NOTE ON: channel=1 note=95 velocity=54 tone=1975.5Hz
+NOTE OFF: channel=1 note=95 held=0 envelope=release
+NOTE ON: channel=1 note=89 velocity=41 tone=1396.9Hz
+NOTE OFF: channel=1 note=89 held=0 envelope=release
+NOTE ON: channel=1 note=95 velocity=48 tone=1975.5Hz
+NOTE OFF: channel=1 note=95 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=1975.5Hz env=idle level=0.000 held=0 noteOn=255 noteOff=256 audioBytes=50765824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=95 velocity=99 tone=1975.5Hz
+NOTE ON: channel=1 note=91 velocity=99 tone=1568.0Hz
+NOTE OFF: channel=1 note=95 held=1 envelope=sustain
+NOTE OFF: channel=1 note=91 held=0 envelope=release
+NOTE ON: channel=1 note=96 velocity=103 tone=2093.0Hz
+NOTE ON: channel=1 note=89 velocity=77 tone=1396.9Hz
+NOTE OFF: channel=1 note=89 held=1 envelope=sustain
+NOTE OFF: channel=1 note=96 held=0 envelope=release
+NOTE ON: channel=1 note=88 velocity=84 tone=1318.5Hz
+NOTE ON: channel=1 note=98 velocity=52 tone=2349.3Hz
+NOTE OFF: channel=1 note=88 held=1 envelope=sustain
+NOTE OFF: channel=1 note=98 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=51149824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+CONTROLLER: current sound reloaded
+CC: channel=1 controller=113 value=127 result=waiting/unassigned
+CC: channel=1 controller=113 value=0 result=waiting/unassigned
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=51533824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+CONTROLLER: panic/silent
+CC: channel=1 controller=115 value=127 result=waiting/unassigned
+PANIC: cleared notes and pending MIDI after detach/overflow
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=51917824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+CC: channel=1 controller=115 value=0 result=waiting/unassigned
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=52301824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=52685824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=53069824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=53453824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=53837824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=54221824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=54605824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=54989824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=55373824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=55757824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=idle level=0.000 held=0 noteOn=261 noteOff=262 audioBytes=56141824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=95 velocity=30 tone=1975.5Hz
+NOTE OFF: channel=1 note=95 held=0 envelope=release
+NOTE ON: channel=1 note=96 velocity=77 tone=2093.0Hz
+NOTE OFF: channel=1 note=96 held=0 envelope=release
+NOTE ON: channel=1 note=98 velocity=70 tone=2349.3Hz
+NOTE OFF: channel=1 note=98 held=0 envelope=release
+NOTE ON: channel=1 note=100 velocity=88 tone=2637.0Hz
+NOTE OFF: channel=1 note=100 held=0 envelope=release
+NOTE ON: channel=1 note=101 velocity=50 tone=2793.8Hz
+NOTE OFF: channel=1 note=101 held=0 envelope=release
+NOTE ON: channel=1 note=100 velocity=47 tone=2637.0Hz
+NOTE OFF: channel=1 note=100 held=0 envelope=release
+NOTE ON: channel=1 note=98 velocity=76 tone=2349.3Hz
+STATUS: I2S=ready HUSB=ready devices=1 tone=2349.3Hz env=sustain level=0.700 held=1 noteOn=268 noteOff=268 audioBytes=56525824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE OFF: channel=1 note=98 held=0 envelope=release
+NOTE ON: channel=1 note=96 velocity=88 tone=2093.0Hz
+NOTE OFF: channel=1 note=96 held=0 envelope=release
+NOTE ON: channel=1 note=95 velocity=79 tone=1975.5Hz
+NOTE OFF: channel=1 note=95 held=0 envelope=release
+NOTE ON: channel=1 note=93 velocity=84 tone=1760.0Hz
+NOTE OFF: channel=1 note=93 held=0 envelope=release
+NOTE ON: channel=1 note=91 velocity=43 tone=1568.0Hz
+NOTE OFF: channel=1 note=91 held=0 envelope=release
+NOTE ON: channel=1 note=89 velocity=81 tone=1396.9Hz
+NOTE OFF: channel=1 note=89 held=0 envelope=release
+NOTE ON: channel=1 note=88 velocity=67 tone=1318.5Hz
+STATUS: I2S=ready HUSB=ready devices=1 tone=1318.5Hz env=sustain level=0.700 held=1 noteOn=274 noteOff=274 audioBytes=56909824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE OFF: channel=1 note=88 held=0 envelope=release
+NOTE ON: channel=1 note=88 velocity=37 tone=1318.5Hz
+NOTE OFF: channel=1 note=88 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=60 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=86 tone=1174.7Hz
+NOTE OFF: channel=1 note=86 held=0 envelope=release
+NOTE ON: channel=1 note=88 velocity=28 tone=1318.5Hz
+NOTE OFF: channel=1 note=88 held=0 envelope=release
+NOTE ON: channel=1 note=86 velocity=75 tone=1174.7Hz
+NOTE ON: channel=1 note=88 velocity=95 tone=1318.5Hz
+NOTE OFF: channel=1 note=86 held=1 envelope=decay
+STATUS: I2S=ready HUSB=ready devices=1 tone=1318.5Hz env=decay level=0.774 held=1 noteOn=280 noteOff=280 audioBytes=57293824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+NOTE OFF: channel=1 note=88 held=0 envelope=release

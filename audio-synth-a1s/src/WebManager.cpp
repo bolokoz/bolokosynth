@@ -1,3 +1,11 @@
+/*
+ * Legacy AudioKit HTML/JSON configuration and NVS-backed MIDI settings.
+ * WiFiManager may block during initial provisioning; it times out after 180 s.
+ * HTTP posts update the local synth facade and persist MIDI/detection settings.
+ * The browser uses plain local HTTP; this is a development configuration portal,
+ * not an authenticated internet service. Keep UI fields and JSON names aligned.
+ */
+
 #include "WebManager.h"
 #include <Preferences.h>
 

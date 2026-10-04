@@ -1,3 +1,12 @@
+/*
+ * Legacy AudioKit eight-voice engine and facade built on arduino-audio-tools.
+ * Switchable generators let waveform edits retain the output stream wiring;
+ * triangle is naive and may alias. Active-count averaging avoids overflow but
+ * changes existing-note gain as voices enter/leave, unlike the P4 fixed headroom.
+ * Voice allocation is simple and note-based, not P4's channel-aware allocator.
+ * Stored volume is applied at codec hardware level by main.cpp.
+ */
+
 #ifndef SYNTH_H
 #define SYNTH_H
 

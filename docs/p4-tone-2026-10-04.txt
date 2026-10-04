@@ -1,0 +1,42 @@
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=7271424 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=7373824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=7757824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=8141824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=8525824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=8909824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=9293824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=9677824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=10061824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=10445824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=10829824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=11213824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=11597824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=11981824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=12365824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=12749824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+
+--- After user confirmed RGB green/blue ---
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=27209728 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=27341824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=27725824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440Hz noteOn=0 noteOff=1 audioBytes=28109824 droppedMidi=0 fault=0
+USB DEVICE: address=1 VID=1C75 PID=0289

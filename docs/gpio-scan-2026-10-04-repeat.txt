@@ -1,0 +1,74 @@
+GPIO_SCAN_BEGIN
+Weak-pull input screening, not continuity certification.
+Layout: components facing you, antenna TOP, USB connectors BOTTOM.
+All modules, keyboard and external debugger must be disconnected.
+NO_ANOMALY does not rule out a short; SUSPECT can also mean leakage/loading.
+5V/3V3/GND/RST and excluded-pin pairs remain UNTESTED.
+PIN GPIO1 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO2 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO4 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO5 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO6 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO7 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO8 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO9 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO10 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO11 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO12 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO13 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO14 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO15 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO16 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO17 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO18 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO21 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO38 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO39 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO40 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO41 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO42 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PIN GPIO47 NO_ANOMALY pull-up-high=8/8 pull-down-high=0/8
+PAIR LEFT positions=1-2 pins=3V3/3V3 SKIPPED: supply/GND/RST: no software continuity test; supply/GND/RST: no software continuity test
+PAIR LEFT positions=2-3 pins=3V3/RST SKIPPED: supply/GND/RST: no software continuity test; supply/GND/RST: no software continuity test
+PAIR LEFT positions=3-4 pins=RST/4 SKIPPED: supply/GND/RST: no software continuity test; ordinary GPIO
+PAIR LEFT positions=4-5 pins=4/5 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=5-6 pins=5/6 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=6-7 pins=6/7 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=7-8 pins=7/15 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=8-9 pins=15/16 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=9-10 pins=16/17 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=10-11 pins=17/18 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=11-12 pins=18/8 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=12-13 pins=8/3 SKIPPED: ordinary GPIO; boot strap
+PAIR LEFT positions=13-14 pins=3/46 SKIPPED: boot strap; boot strap
+PAIR LEFT positions=14-15 pins=46/9 SKIPPED: boot strap; ordinary GPIO
+PAIR LEFT positions=15-16 pins=9/10 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=16-17 pins=10/11 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=17-18 pins=11/12 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=18-19 pins=12/13 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=19-20 pins=13/14 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR LEFT positions=20-21 pins=14/5V SKIPPED: ordinary GPIO; supply/GND/RST: no software continuity test
+PAIR LEFT positions=21-22 pins=5V/GND SKIPPED: supply/GND/RST: no software continuity test; supply/GND/RST: no software continuity test
+PAIR RIGHT positions=1-2 pins=GND/43/TX SKIPPED: supply/GND/RST: no software continuity test; UART bridge
+PAIR RIGHT positions=2-3 pins=43/TX/44/RX SKIPPED: UART bridge; UART bridge
+PAIR RIGHT positions=3-4 pins=44/RX/1 SKIPPED: UART bridge; ordinary GPIO
+PAIR RIGHT positions=4-5 pins=1/2 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=5-6 pins=2/42 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=6-7 pins=42/41 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=7-8 pins=41/40 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=8-9 pins=40/39 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=9-10 pins=39/38 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=10-11 pins=38/37 SKIPPED: ordinary GPIO; octal PSRAM
+PAIR RIGHT positions=11-12 pins=37/36 SKIPPED: octal PSRAM; octal PSRAM
+PAIR RIGHT positions=12-13 pins=36/35 SKIPPED: octal PSRAM; octal PSRAM
+PAIR RIGHT positions=13-14 pins=35/0/BOOT SKIPPED: octal PSRAM; boot strap
+PAIR RIGHT positions=14-15 pins=0/BOOT/45 SKIPPED: boot strap; boot strap
+PAIR RIGHT positions=15-16 pins=45/48/RGB SKIPPED: boot strap; RGB LED
+PAIR RIGHT positions=16-17 pins=48/RGB/47 SKIPPED: RGB LED; ordinary GPIO
+PAIR RIGHT positions=17-18 pins=47/21 NO_ANOMALY high-counts UU=8,8 DD=0,0 UD=8,0 DU=0,8 /8
+PAIR RIGHT positions=18-19 pins=21/20/USB+ SKIPPED: ordinary GPIO; native USB
+PAIR RIGHT positions=19-20 pins=20/USB+/19/USB- SKIPPED: native USB; native USB
+PAIR RIGHT positions=20-21 pins=19/USB-/GND SKIPPED: native USB; supply/GND/RST: no software continuity test
+PAIR RIGHT positions=21-22 pins=GND/GND SKIPPED: supply/GND/RST: no software continuity test; supply/GND/RST: no software continuity test
+SUMMARY pins-screened=24 pin-suspects=0 adjacent-pairs-screened=20 pair-suspects=0 adjacent-pairs-skipped=22
+GPIO_SCAN_END

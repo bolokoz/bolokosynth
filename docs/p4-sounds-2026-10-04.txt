@@ -1,0 +1,225 @@
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=50 ms [Unassigned]
+CONFIG: Sustain=70% [Unassigned]
+CONFIG: Release=200 ms [Unassigned]
+CONFIG: Waveform=Square [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Init Square [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Saw [Unassigned]
+CONFIG: OSC2 Level=0% [Unassigned]
+CONFIG: OSC2 Coarse=+0 st [Unassigned]
+CONFIG: OSC2 Fine=+0 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=0% [Unassigned]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=19818496 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Soft Sine
+CONFIG: Attack=15 ms [Unassigned]
+CONFIG: Decay=50 ms [Unassigned]
+CONFIG: Sustain=70% [Unassigned]
+CONFIG: Release=350 ms [Unassigned]
+CONFIG: Waveform=Sine [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Soft Sine [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Saw [Unassigned]
+CONFIG: OSC2 Level=0% [Unassigned]
+CONFIG: OSC2 Coarse=+0 st [Unassigned]
+CONFIG: OSC2 Fine=+0 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=0% [Unassigned]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20027392 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20045824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Sub Bass
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=180 ms [Unassigned]
+CONFIG: Sustain=50% [Unassigned]
+CONFIG: Release=100 ms [Unassigned]
+CONFIG: Waveform=Triangle [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Sub Bass [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Sine [Unassigned]
+CONFIG: OSC2 Level=75% [Unassigned]
+CONFIG: OSC2 Coarse=-12 st [Unassigned]
+CONFIG: OSC2 Fine=+0 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=0% [Unassigned]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20317184 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20429824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Detuned Saw
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=50 ms [Unassigned]
+CONFIG: Sustain=70% [Unassigned]
+CONFIG: Release=200 ms [Unassigned]
+CONFIG: Waveform=Saw [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Detuned Saw [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Saw [Unassigned]
+CONFIG: OSC2 Level=100% [Unassigned]
+CONFIG: OSC2 Coarse=+0 st [Unassigned]
+CONFIG: OSC2 Fine=-8 ct [Unassigned]
+CONFIG: OSC3 Shape=Saw [Unassigned]
+CONFIG: OSC3 Level=100% [Unassigned]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+8 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20621312 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20813824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Warm Pad
+CONFIG: Attack=450 ms [Unassigned]
+CONFIG: Decay=700 ms [Unassigned]
+CONFIG: Sustain=75% [Unassigned]
+CONFIG: Release=1.40 s [Unassigned]
+CONFIG: Waveform=Triangle [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Warm Pad [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Saw [Unassigned]
+CONFIG: OSC2 Level=35% [Unassigned]
+CONFIG: OSC2 Coarse=+0 st [Unassigned]
+CONFIG: OSC2 Fine=-7 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=60% [Unassigned]
+CONFIG: OSC3 Coarse=+12 st [Unassigned]
+CONFIG: OSC3 Fine=+7 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=20918272 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=21197824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Organ
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=30 ms [Unassigned]
+CONFIG: Sustain=100% [Unassigned]
+CONFIG: Release=90 ms [Unassigned]
+CONFIG: Waveform=Sine [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Organ [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Sine [Unassigned]
+CONFIG: OSC2 Level=65% [Unassigned]
+CONFIG: OSC2 Coarse=+12 st [Unassigned]
+CONFIG: OSC2 Fine=+0 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=30% [Unassigned]
+CONFIG: OSC3 Coarse=+19 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=21221376 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Pluck
+CONFIG: Attack=3.0 ms [Unassigned]
+CONFIG: Decay=350 ms [Unassigned]
+CONFIG: Sustain=0% [Unassigned]
+CONFIG: Release=150 ms [Unassigned]
+CONFIG: Waveform=Saw [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Pluck [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Triangle [Unassigned]
+CONFIG: OSC2 Level=50% [Unassigned]
+CONFIG: OSC2 Coarse=+12 st [Unassigned]
+CONFIG: OSC2 Fine=+3 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=0% [Unassigned]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=21511168 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=21581824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Hollow Lead
+CONFIG: Attack=10 ms [Unassigned]
+CONFIG: Decay=120 ms [Unassigned]
+CONFIG: Sustain=60% [Unassigned]
+CONFIG: Release=300 ms [Unassigned]
+CONFIG: Waveform=Square [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Hollow Lead [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Square [Unassigned]
+CONFIG: OSC2 Level=45% [Unassigned]
+CONFIG: OSC2 Coarse=+12 st [Unassigned]
+CONFIG: OSC2 Fine=-5 ct [Unassigned]
+CONFIG: OSC3 Shape=Triangle [Unassigned]
+CONFIG: OSC3 Level=50% [Unassigned]
+CONFIG: OSC3 Coarse=-12 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=21809152 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=21965824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+SOUND: Init Square
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=50 ms [Unassigned]
+CONFIG: Sustain=70% [Unassigned]
+CONFIG: Release=200 ms [Unassigned]
+CONFIG: Waveform=Square [Unassigned]
+CONFIG: Volume=25% [Unassigned]
+CONFIG: Preset=Init Square [Unassigned]
+CONFIG: OSC1 Level=100% [Unassigned]
+CONFIG: OSC1 Coarse=+0 st [Unassigned]
+CONFIG: OSC1 Fine=+0 ct [Unassigned]
+CONFIG: OSC2 Shape=Saw [Unassigned]
+CONFIG: OSC2 Level=0% [Unassigned]
+CONFIG: OSC2 Coarse=+0 st [Unassigned]
+CONFIG: OSC2 Fine=+0 ct [Unassigned]
+CONFIG: OSC3 Shape=Sine [Unassigned]
+CONFIG: OSC3 Level=0% [Unassigned]
+CONFIG: OSC3 Coarse=+0 st [Unassigned]
+CONFIG: OSC3 Fine=+0 ct [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=22111232 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=22349824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+PANIC: silent
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=22412288 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=22733824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289

@@ -1,0 +1,10 @@
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=8213504 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+AMP ENABLE: SD/EN=IO17 level=HIGH (output level, not hardware detection)
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=0 noteOff=1 audioBytes=8525824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+AMP ENABLE: SD/EN=IO17 level=HIGH (output level, not hardware detection)
+CONTROLLER PROFILE: MiniLab MkII
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289

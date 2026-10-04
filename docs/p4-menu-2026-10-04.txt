@@ -1,0 +1,88 @@
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=2985984 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=50 ms [Unassigned]
+CONFIG: Sustain=70% [Unassigned]
+CONFIG: Release=200 ms [Unassigned]
+CONFIG: Waveform=Square [Unassigned]
+CONFIG: Volume=100% [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=3149824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=3533824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=3917824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=4301824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=4685824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=5069824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=5453824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+CC: channel=1 controller=112 value=64 result=waiting/unassigned
+CC: channel=1 controller=112 value=64 result=waiting/unassigned
+CC: channel=1 controller=112 value=64 result=waiting/unassigned
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=5837824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+CC: channel=1 controller=112 value=64 result=waiting/unassigned
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=6221824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=6605824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=6989824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=7373824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=7757824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=idle level=0.000 held=0 noteOn=12 noteOff=11 audioBytes=8141824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=53 velocity=12 tone=174.6Hz
+NOTE OFF: channel=1 note=53 held=0 envelope=release
+NOTE ON: channel=1 note=53 velocity=60 tone=174.6Hz
+NOTE OFF: channel=1 note=53 held=0 envelope=release
+NOTE ON: channel=1 note=55 velocity=62 tone=196.0Hz
+NOTE OFF: channel=1 note=55 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=196.0Hz env=release level=0.700 held=0 noteOn=15 noteOff=14 audioBytes=8525824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=57 velocity=87 tone=220.0Hz
+NOTE OFF: channel=1 note=57 held=0 envelope=release
+NOTE ON: channel=1 note=59 velocity=91 tone=246.9Hz
+NOTE OFF: channel=1 note=59 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=246.9Hz env=idle level=0.000 held=0 noteOn=17 noteOff=16 audioBytes=8909824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=246.9Hz env=idle level=0.000 held=0 noteOn=17 noteOff=16 audioBytes=9293824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=53 velocity=84 tone=174.6Hz
+NOTE ON: channel=1 note=55 velocity=87 tone=196.0Hz
+NOTE OFF: channel=1 note=53 held=1 envelope=attack
+NOTE OFF: channel=1 note=55 held=0 envelope=release
+NOTE ON: channel=1 note=57 velocity=88 tone=220.0Hz
+NOTE OFF: channel=1 note=57 held=0 envelope=release
+NOTE ON: channel=1 note=59 velocity=83 tone=246.9Hz
+STATUS: I2S=ready HUSB=ready devices=1 tone=246.9Hz env=attack level=0.483 held=1 noteOn=21 noteOff=19 audioBytes=9677824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE OFF: channel=1 note=59 held=0 envelope=release
+NOTE ON: channel=1 note=60 velocity=76 tone=261.6Hz
+NOTE OFF: channel=1 note=60 held=0 envelope=release
+NOTE ON: channel=1 note=62 velocity=99 tone=293.7Hz
+NOTE OFF: channel=1 note=62 held=0 envelope=release
+NOTE ON: channel=1 note=60 velocity=77 tone=261.6Hz
+NOTE OFF: channel=1 note=60 held=0 envelope=release
+NOTE ON: channel=1 note=59 velocity=70 tone=246.9Hz
+NOTE OFF: channel=1 note=59 held=0 envelope=release
+NOTE ON: channel=1 note=57 velocity=60 tone=220.0Hz
+NOTE OFF: channel=1 note=57 held=0 envelope=release
+NOTE ON: channel=1 note=55 velocity=83 tone=196.0Hz
+NOTE OFF: channel=1 note=55 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=196.0Hz env=idle level=0.000 held=0 noteOn=27 noteOff=26 audioBytes=10061824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=196.0Hz env=idle level=0.000 held=0 noteOn=27 noteOff=26 audioBytes=10445824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=196.0Hz env=idle level=0.000 held=0 noteOn=27 noteOff=26 audioBytes=10829824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=196.0Hz env=idle level=0.000 held=0 noteOn=27 noteOff=26 audioBytes=11213824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=196.0Hz env=idle level=0.000 held=0 noteOn=27 noteOff=26 audioBytes=11597824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289

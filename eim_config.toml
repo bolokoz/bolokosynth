@@ -1,3 +1,6 @@
+# Local ESP-IDF installer configuration, retained for the original development host.
+# Absolute paths are host-specific; PlatformIO P4 builds use their own toolchain.
+
 path = "/Users/boloko/.espressif"
 idf_path = "/Users/boloko/.espressif/v6.0.2/esp-idf"
 esp_idf_json_path = "/Users/boloko/.espressif/tools"

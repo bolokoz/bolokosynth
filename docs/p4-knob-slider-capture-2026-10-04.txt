@@ -1,0 +1,122 @@
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6606413824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6606797824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6607181824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6607565824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6607949824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6608333824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6608717824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6609101824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=440.0Hz env=idle level=0.000 held=0 noteOn=14 noteOff=15 audioBytes=6609485824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=64 velocity=76 tone=329.6Hz
+NOTE OFF: channel=1 note=64 held=0 envelope=release
+NOTE ON: channel=1 note=65 velocity=86 tone=349.2Hz
+STATUS: I2S=ready HUSB=ready devices=1 tone=349.2Hz env=sustain level=0.700 held=1 noteOn=16 noteOff=16 audioBytes=6609869824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=67 velocity=90 tone=392.0Hz
+NOTE OFF: channel=1 note=65 held=1 envelope=decay
+NOTE ON: channel=1 note=69 velocity=96 tone=440.0Hz
+NOTE OFF: channel=1 note=67 held=1 envelope=decay
+NOTE ON: channel=1 note=71 velocity=93 tone=493.9Hz
+NOTE OFF: channel=1 note=69 held=1 envelope=decay
+NOTE ON: channel=1 note=69 velocity=85 tone=440.0Hz
+NOTE OFF: channel=1 note=71 held=1 envelope=decay
+NOTE ON: channel=1 note=67 velocity=77 tone=392.0Hz
+NOTE OFF: channel=1 note=69 held=1 envelope=sustain
+NOTE ON: channel=1 note=65 velocity=77 tone=349.2Hz
+NOTE OFF: channel=1 note=67 held=1 envelope=decay
+NOTE ON: channel=1 note=64 velocity=48 tone=329.6Hz
+NOTE OFF: channel=1 note=65 held=1 envelope=decay
+NOTE OFF: channel=1 note=64 held=0 envelope=release
+NOTE ON: channel=1 note=64 velocity=70 tone=329.6Hz
+NOTE ON: channel=1 note=65 velocity=49 tone=349.2Hz
+NOTE OFF: channel=1 note=65 held=1 envelope=sustain
+STATUS: I2S=ready HUSB=ready devices=1 tone=329.6Hz env=sustain level=0.700 held=1 noteOn=25 noteOff=25 audioBytes=6610253824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE OFF: channel=1 note=64 held=0 envelope=release
+NOTE ON: channel=1 note=65 velocity=56 tone=349.2Hz
+NOTE OFF: channel=1 note=65 held=0 envelope=release
+NOTE ON: channel=1 note=64 velocity=78 tone=329.6Hz
+NOTE ON: channel=1 note=65 velocity=79 tone=349.2Hz
+NOTE OFF: channel=1 note=64 held=1 envelope=decay
+NOTE ON: channel=1 note=64 velocity=49 tone=329.6Hz
+NOTE OFF: channel=1 note=65 held=1 envelope=decay
+NOTE OFF: channel=1 note=64 held=0 envelope=release
+NOTE ON: channel=1 note=65 velocity=17 tone=349.2Hz
+NOTE OFF: channel=1 note=65 held=0 envelope=release
+NOTE ON: channel=1 note=64 velocity=40 tone=329.6Hz
+NOTE OFF: channel=1 note=64 held=0 envelope=release
+NOTE ON: channel=1 note=64 velocity=36 tone=329.6Hz
+NOTE ON: channel=1 note=65 velocity=55 tone=349.2Hz
+NOTE OFF: channel=1 note=64 held=1 envelope=decay
+NOTE OFF: channel=1 note=65 held=0 envelope=release
+NOTE ON: channel=1 note=64 velocity=39 tone=329.6Hz
+NOTE ON: channel=1 note=65 velocity=74 tone=349.2Hz
+NOTE OFF: channel=1 note=64 held=1 envelope=decay
+NOTE OFF: channel=1 note=65 held=0 envelope=release
+NOTE ON: channel=1 note=64 velocity=38 tone=329.6Hz
+NOTE OFF: channel=1 note=64 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=329.6Hz env=idle level=0.000 held=0 noteOn=36 noteOff=37 audioBytes=6610637824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE ON: channel=1 note=71 velocity=109 tone=493.9Hz
+STATUS: I2S=ready HUSB=ready devices=1 tone=493.9Hz env=sustain level=0.700 held=1 noteOn=37 noteOff=37 audioBytes=6611021824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE OFF: channel=1 note=71 held=0 envelope=release
+NOTE ON: channel=1 note=71 velocity=40 tone=493.9Hz
+CC: channel=1 controller=1 value=1 result=waiting/unassigned
+CC: channel=1 controller=1 value=81 result=waiting/unassigned
+CC: channel=1 controller=1 value=112 result=waiting/unassigned
+CC: channel=1 controller=1 value=121 result=waiting/unassigned
+CC: channel=1 controller=1 value=101 result=waiting/unassigned
+CC: channel=1 controller=1 value=51 result=waiting/unassigned
+STATUS: I2S=ready HUSB=ready devices=1 tone=493.9Hz env=sustain level=0.700 held=1 noteOn=38 noteOff=38 audioBytes=6611405824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+CC: channel=1 controller=1 value=27 result=waiting/unassigned
+NOTE OFF: channel=1 note=71 held=0 envelope=release
+NOTE ON: channel=1 note=71 velocity=79 tone=493.9Hz
+CC: channel=1 controller=1 value=23 result=waiting/unassigned
+CC: channel=1 controller=1 value=61 result=waiting/unassigned
+CC: channel=1 controller=1 value=122 result=waiting/unassigned
+CC: channel=1 controller=1 value=126 result=waiting/unassigned
+CC: channel=1 controller=1 value=78 result=waiting/unassigned
+CC: channel=1 controller=1 value=22 result=waiting/unassigned
+NOTE OFF: channel=1 note=71 held=0 envelope=release
+NOTE ON: channel=1 note=71 velocity=78 tone=493.9Hz
+CC: channel=1 controller=1 value=1 result=waiting/unassigned
+CC: channel=1 controller=1 value=57 result=waiting/unassigned
+CC: channel=1 controller=1 value=97 result=waiting/unassigned
+CC: channel=1 controller=1 value=118 result=waiting/unassigned
+CC: channel=1 controller=1 value=105 result=waiting/unassigned
+CC: channel=1 controller=1 value=52 result=waiting/unassigned
+STATUS: I2S=ready HUSB=ready devices=1 tone=493.9Hz env=sustain level=0.700 held=1 noteOn=40 noteOff=40 audioBytes=6611789824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+NOTE OFF: channel=1 note=71 held=0 envelope=release
+STATUS: I2S=ready HUSB=ready devices=1 tone=493.9Hz env=idle level=0.000 held=0 noteOn=40 noteOff=41 audioBytes=6612173824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=493.9Hz env=idle level=0.000 held=0 noteOn=40 noteOff=41 audioBytes=6612557824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+MODULES: MAX=unverified TFT=unverified presence=disabled (initialization is not hardware detection)
+USB DEVICE: address=1 VID=1C75 PID=0289

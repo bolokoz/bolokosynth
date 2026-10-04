@@ -1,3 +1,11 @@
+/*
+ * AudioKit microphone pitch-class detection using a two-octave Goertzel sweep.
+ * Sums octaves into pitch classes; it does not estimate a unique octave or tune.
+ * AC101 TX/RX switching was unreliable, so capture persists result/threshold
+ * to NVS and reboots instead of attempting a live return to the output stream.
+ * Inline capture MIDI parsing handles the ratio CC, not the complete MIDI spec.
+ */
+
 #ifndef PITCH_DETECTOR_H
 #define PITCH_DETECTOR_H
 

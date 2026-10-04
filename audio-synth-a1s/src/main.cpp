@@ -1,3 +1,12 @@
+/*
+ * Legacy AudioKit AC101 integration: UART MIDI, codec audio, OLED and web setup.
+ * This hardware path is distinct from the active P4/MAX/ST7789 v1 prototype.
+ * OLED shares codec I2C; display.begin must not reinitialize Wire. Pitch capture
+ * temporarily stops audio and intentionally reboots after persisting its result.
+ * Display shared state uses volatile, not a general synchronization contract;
+ * keep compound data ownership in mind before extending these legacy tasks.
+ */
+
 #include <Arduino.h>
 #include "AudioTools.h"
 #include "AudioTools/AudioLibs/AudioBoardStream.h"

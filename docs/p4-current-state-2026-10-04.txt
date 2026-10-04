@@ -1,0 +1,14 @@
+STATUS: I2S=ready HUSB=ready devices=1 tone=277.2Hz env=idle level=0.000 held=0 noteOn=1 noteOff=2 audioBytes=37217280 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+CONFIG: Attack=5.0 ms [Unassigned]
+CONFIG: Decay=50 ms [Unassigned]
+CONFIG: Sustain=70% [Unassigned]
+CONFIG: Release=200 ms [Unassigned]
+CONFIG: Waveform=Square [Unassigned]
+CONFIG: Volume=100% [Unassigned]
+STATUS: I2S=ready HUSB=ready devices=1 tone=277.2Hz env=idle level=0.000 held=0 noteOn=1 noteOff=2 audioBytes=37325824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=277.2Hz env=idle level=0.000 held=0 noteOn=1 noteOff=2 audioBytes=37709824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
+STATUS: I2S=ready HUSB=ready devices=1 tone=277.2Hz env=idle level=0.000 held=0 noteOn=1 noteOff=2 audioBytes=38093824 droppedMidi=0 fault=0 TFT=initialized droppedUi=0
+USB DEVICE: address=1 VID=1C75 PID=0289
